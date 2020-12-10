@@ -1,0 +1,23 @@
+.homepage-container {
+  display: flex;
+  flex-direction: row;
+}
+.signup-btn {
+  display: block;
+}
+.login-btn {
+  display: block;
+}
+.welcome-container {
+  height: 100vh;
+  background: url("../images/picForHomepage.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #ffffff;
+  width: 50%;
+}
+.signup-container {
+  width: 50%;
+}

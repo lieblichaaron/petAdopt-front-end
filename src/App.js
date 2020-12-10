@@ -1,5 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
+import 'fontsource-roboto';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import HomepageLoggedOut from './Components/HomepageLoggedOut'
 
 function App() {
