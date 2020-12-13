@@ -1,0 +1,27 @@
+.page-container {
+  color: #cccccc;
+  height: 100vh;
+  background: url("../images/picForHomepage2.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.header-link {
+  color: #cccccc;
+  margin: 0 5px;
+}
+.header-link:hover {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+}
+.main-container {
+  margin: 5%;
+  text-align: center;
+  color: black;
+}
+.welcome-link {
+  color: #cccccc;
+  padding: 5px;
+  margin: 3px;
+}

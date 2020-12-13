@@ -1,15 +1,10 @@
 .homepage-container {
   display: flex;
   flex-direction: row;
-}
-.signup-btn {
-  display: block;
-}
-.login-btn {
-  display: block;
+  height: calc(100vh - 50px);
 }
 .welcome-container {
-  height: 100vh;
+  height: 100%;
   background: url("../images/picForHomepage.jpg") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -20,4 +15,24 @@
 }
 .signup-container {
   width: 50%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.inner-signup-container {
+  margin: 20%;
+}
+.signup-btn {
+  display: block;
+  margin: 2px;
+  width: 100%;
+}
+.login-btn {
+  display: block;
+  margin: 2px;
+  width: 100%;
+}
+.footer {
+  text-align: center;
+  height: 30px;
 }
