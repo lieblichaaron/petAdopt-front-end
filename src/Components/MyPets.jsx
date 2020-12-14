@@ -1,9 +1,26 @@
 import CustomNavbar from "./Navbar";
-import styles from "./MyPets.module.css";
+import { Link } from "react-router-dom";
+import styles from "./MyPets.module.scss";
 const MyPets = () => {
   return (
-    <div>
+    <div className={styles["page-container"]}>
       <CustomNavbar />
+      <div className={styles["main-container"]}>
+        {true && (
+          <h1>
+            You currently do not own or foster any pets. <br />
+            Looking to Adopt?
+            <Link className={styles["non-owner-link"]} to="/PetSearch">
+              Search pets
+            </Link>
+          </h1>
+        )}
+      </div>
+      <footer className={styles.footer}>
+        <a href="https://www.freepik.com/photos/woman">
+          Woman photo created by wayhomestudio - www.freepik.com
+        </a>
+      </footer>
     </div>
   );
 };

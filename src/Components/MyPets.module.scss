@@ -1,0 +1,28 @@
+.page-container {
+  background: url("../images/PicForMyPets.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+.main-container {
+  margin: 10%;
+  text-align: center;
+  color: rgb(48, 30, 56);
+}
+.non-owner-link {
+  color: #cccccc;
+  padding: 5px;
+  margin: 3px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+}
+.footer a {
+  color: #cccccc;
+  &:hover {
+    text-decoration: none;
+  }
+}
