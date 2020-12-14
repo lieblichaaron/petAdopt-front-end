@@ -7,14 +7,6 @@
   -o-background-size: cover;
   background-size: cover;
 }
-.header-link {
-  color: #cccccc;
-  margin: 0 5px;
-}
-.header-link:hover {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
-}
 .main-container {
   margin: 5%;
   text-align: center;

@@ -1,27 +1,10 @@
 import styles from "./HomepageLoggedIn.module.css";
-import { Navbar, Nav } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
-import Logo from "../images/favicon-32x32.png";
+import { Link } from "react-router-dom";
+import CustomNavbar from "./Navbar";
 const HomepageLoggedIn = () => {
   return (
     <div className={styles["page-container"]}>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand>
-          <img src={Logo} alt="logo" />
-          PetAdopt
-        </Navbar.Brand>
-        <Nav>
-          <NavLink className={styles["header-link"]} to="/MyPets">
-            My pets
-          </NavLink>
-          <NavLink className={styles["header-link"]} to="/PetSearch">
-            Find a pet
-          </NavLink>
-          <NavLink className={styles["header-link"]} to="/ProfileSettings">
-            Profile settings
-          </NavLink>
-        </Nav>
-      </Navbar>
+      <CustomNavbar />
       <div className={styles["main-container"]}>
         {/* user name from data */}
         <h1>Welcome back, John Smith!</h1>

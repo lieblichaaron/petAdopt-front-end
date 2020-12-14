@@ -1,30 +1,13 @@
 import styles from "./ProfileSettings.module.css";
-import { Navbar, Nav, Form, Button, Card } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-import Logo from "../images/favicon-32x32.png";
+import { Form, Button, Card } from "react-bootstrap";
+import CustomNavbar from "./Navbar";
 const ProfileSettings = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
   return (
     <div>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand>
-          <img src={Logo} alt="logo" />
-          PetAdopt
-        </Navbar.Brand>
-        <Nav className="mr-auto">
-          <NavLink className={styles["header-link"]} to="/">
-            Home
-          </NavLink>
-          <NavLink className={styles["header-link"]} to="/MyPets">
-            My pets
-          </NavLink>
-          <NavLink className={styles["header-link"]} to="/PetSearch">
-            Find a pet
-          </NavLink>
-        </Nav>
-      </Navbar>
+      <CustomNavbar />
       <div className={styles["main-body-container"]}>
         <div className={styles["main-body-pic"]}>
           {/* make this background a rotating album of the users pets if they have any */}
