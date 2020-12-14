@@ -12,13 +12,13 @@ const HomepageLoggedIn = () => {
         </Navbar.Brand>
         <Nav>
           <NavLink className={styles["header-link"]} to="/MyPets">
-            My Pets
+            My pets
           </NavLink>
           <NavLink className={styles["header-link"]} to="/PetSearch">
             Find a pet
           </NavLink>
           <NavLink className={styles["header-link"]} to="/ProfileSettings">
-            Profile Settings
+            Profile settings
           </NavLink>
         </Nav>
       </Navbar>
@@ -28,7 +28,7 @@ const HomepageLoggedIn = () => {
         <h4>
           Got enough pets? Check them out on your
           <Link className={styles["welcome-link"]} to="/MyPets">
-            My Pets
+            My pets
           </Link>
           Page
         </h4>

@@ -18,7 +18,7 @@ const ProfileSettings = () => {
             Home
           </NavLink>
           <NavLink className={styles["header-link"]} to="/MyPets">
-            My Pets
+            My pets
           </NavLink>
           <NavLink className={styles["header-link"]} to="/PetSearch">
             Find a pet
