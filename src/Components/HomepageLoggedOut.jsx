@@ -52,10 +52,10 @@ const HomepageLoggedOut = () => {
         </div>
       </div>
       <div className={styles.footer}>
-        <Link className="mr-3" to="/Search">
+        <Link className="mr-3" to="/search">
           Search pets
         </Link>
-        <Link to="/About">About us</Link>
+        <Link to="/about">About us</Link>
         <p>&copy; 2020 PetAdopt, Inc.</p>
       </div>
     </div>

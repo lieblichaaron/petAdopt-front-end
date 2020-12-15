@@ -10,26 +10,19 @@ const CustomNavbar = () => {
         PetAdopt
       </Navbar.Brand>
       <Nav className="mr-auto">
-        <NavLink className={styles["header-link"]} to="/">
+        <NavLink className={styles["header-link"]} to="/home">
           Home
         </NavLink>
-
-        <NavLink className={styles["header-link"]} to="/PetSearch">
+        <NavLink className={styles["header-link"]} to="/petSearch">
           Find a pet
         </NavLink>
-
-        <NavLink className={styles["header-link"]} to="/MyPets">
+        <NavLink className={styles["header-link"]} to="/myPets">
           My pets
         </NavLink>
-
-        <NavLink
-          className={styles["header-link"]}
-          to="/ProfileSettings?name=ProfileSettings"
-        >
+        <NavLink className={styles["header-link"]} to="/profileSettings">
           Profile settings
         </NavLink>
-
-        <NavLink className={styles["header-link"]} to="/About">
+        <NavLink className={styles["header-link"]} to="/about">
           About us
         </NavLink>
       </Nav>

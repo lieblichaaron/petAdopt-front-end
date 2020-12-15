@@ -1,9 +1,19 @@
 import { Modal, Button, Form } from "react-bootstrap";
+import { useState } from "react";
 import Logo from "../images/favicon-32x32.png";
+import { fakeAuth } from "../MockData/FakeAuth";
+import { Redirect } from "react-router-dom";
 const LoginModal = (props) => {
+  const [redirectToRefferer, setRedirectToRefferer] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    fakeAuth.authenticate(() => {
+      setRedirectToRefferer(true);
+    });
   };
+  if (redirectToRefferer) {
+    return <Redirect to="/home" />;
+  }
   return (
     <Modal show={props.modalState} onHide={() => props.closeModal(false)}>
       <Modal.Header closeButton>

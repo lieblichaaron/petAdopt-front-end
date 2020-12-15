@@ -10,7 +10,7 @@ const MyPets = () => {
           <h1>
             You currently do not own or foster any pets. <br />
             Looking to Adopt?
-            <Link className={styles["non-owner-link"]} to="/PetSearch">
+            <Link className={styles["non-owner-link"]} to="/petSearch">
               Search pets
             </Link>
           </h1>

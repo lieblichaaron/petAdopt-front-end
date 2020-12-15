@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "full name": "Aaron Lieblich",
+    "email": "lieblichaaron@gmail.com",
+    "password": "123456",
+    "phone number": "0586190696",
+    "bio": "I love pets",
+    "pets": [
+      {
+        "type": "dog",
+        "name": "shaggy",
+        "adoption status": false,
+        "picture": "../images/picForProfileSettings.jpg",
+        "height": "50cm",
+        "weight": "15lbs",
+        "color": "black and white mix",
+        "bio": "cute...",
+        "hypoallergenic": "no",
+        "dietary restrictions": null,
+        "breed of animal": "Poodle"
+      },
+      {
+        "type": "dog",
+        "name": "shaggy",
+        "adoption status": false,
+        "picture": "../images/picForProfileSettings.jpg",
+        "height": "50cm",
+        "weight": "15lbs",
+        "color": "black and white mix",
+        "bio": "cute...",
+        "hypoallergenic": "no",
+        "dietary restrictions": null,
+        "breed of animal": "Poodle"
+      }
+    ]
+  }
+]
