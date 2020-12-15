@@ -1,9 +1,19 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import Logo from "../images/favicon-32x32.png";
+import { fakeAuth } from "../MockData/FakeAuth";
+import { Redirect } from "react-router-dom";
+import { useState } from "react";
 const SignupModal = (props) => {
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    fakeAuth.authenticate(() => {
+      setUserLoggedIn(true);
+    });
   };
+  if (userLoggedIn) {
+    return <Redirect to="/home" />;
+  }
   return (
     <Modal show={props.modalState} onHide={() => props.closeModal(false)}>
       <Modal.Header closeButton>
