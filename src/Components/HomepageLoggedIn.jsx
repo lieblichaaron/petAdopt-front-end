@@ -1,16 +1,15 @@
-import { useContext } from 'react'
-import { MyContext } from "./Context";
+import { useContext } from "react";
+import { MyContext } from "../Context";
 import styles from "./HomepageLoggedIn.module.css";
 import { Link } from "react-router-dom";
 import CustomNavbar from "./Navbar";
 const HomepageLoggedIn = () => {
-  const { full name } = useContext(MyContext)
+  const { fullName } = useContext(MyContext);
   return (
     <div className={styles["page-container"]}>
       <CustomNavbar />
       <div className={styles["main-container"]}>
-        {/* user name from data */}
-        <h1>Welcome back, John Smith!</h1>
+        <h1>Welcome back, {fullName}!</h1>
         <h4>
           Got enough pets? Check them out on your
           <Link className={styles["welcome-link"]} to="/myPets">

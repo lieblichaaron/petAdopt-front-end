@@ -14,7 +14,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import { MyContext } from "./Context";
 function App() {
   const [user, setUser] = useState(users[0]);
-
+  console.log(user);
   return (
     <MyContext.Provider value={user}>
       <Router>
