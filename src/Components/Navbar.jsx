@@ -4,7 +4,7 @@ import Logo from "../images/favicon-32x32.png";
 import styles from "./Navbar.module.css";
 const CustomNavbar = () => {
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar className={styles["navbar"]}>
       <Navbar.Brand>
         <img src={Logo} alt="logo" />
         PetAdopt
