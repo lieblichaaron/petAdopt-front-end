@@ -8,6 +8,7 @@
     "bio": "I love pets",
     "pets": [
       {
+        "ownerID": 1,
         "id": 1,
         "type": "Dog",
         "name": "Shaggy",
@@ -16,12 +17,13 @@
         "height": "50cm",
         "weight": "15lbs",
         "color": "black and white mix",
-        "bio": "Cute...",
-        "hypoallergenic": "No",
+        "bio": " At the time of rescue at the end of November 2020, he weighed around 52 pounds and has an estimated date of birth 3 March 2019 . We cannot say for sure what breed he is, so we expect families to do their own research on his look and size and decide what breed you think he is and if you have the lifestyle suitable for his needs.",
+        "hypoallergenic": false,
         "dietaryRestrictions": null,
         "breedOfAnimal": "Poodle"
       },
       {
+        "ownerID": 1,
         "id": 2,
         "type": "Cat",
         "name": "Lucky",
@@ -30,26 +32,28 @@
         "height": "50cm",
         "weight": "15lbs",
         "color": "black and white mix",
-        "bio": "Cute...",
-        "hypoallergenic": "No",
+        "bio": " At the time of rescue at the end of November 2020, he weighed around 52 pounds and has an estimated date of birth 3 March 2019 . We cannot say for sure what breed he is, so we expect families to do their own research on his look and size and decide what breed you think he is and if you have the lifestyle suitable for his needs.",
+        "hypoallergenic": true,
         "dietaryRestrictions": null,
         "breedOfAnimal": "Poodle"
       },
       {
+        "ownerID": 1,
         "id": 3,
         "type": "Dog",
         "name": "Shaggy",
-        "adoptionStatus": "Fostered",
+        "adoptionStatus": "Adopted",
         "picture": "../images/picForProfileSettings.jpg",
         "height": "50cm",
         "weight": "15lbs",
         "color": "black and white mix",
         "bio": "Cute...",
-        "hypoallergenic": "No",
+        "hypoallergenic": false,
         "dietaryRestrictions": null,
         "breedOfAnimal": "Poodle"
       },
       {
+        "ownerID": 1,
         "id": 4,
         "type": "Dog",
         "name": "Shaggy",
@@ -59,7 +63,7 @@
         "weight": "15lbs",
         "color": "black and white mix",
         "bio": "Cute...",
-        "hypoallergenic": "No",
+        "hypoallergenic": true,
         "dietaryRestrictions": null,
         "breedOfAnimal": "Poodle"
       }

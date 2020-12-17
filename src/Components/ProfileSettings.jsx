@@ -1,5 +1,6 @@
 import styles from "./ProfileSettings.module.css";
 import { Form, Button, Card } from "react-bootstrap";
+import petPic from "../images/picForProfileSettings.jpg";
 import CustomNavbar from "./Navbar";
 const ProfileSettings = () => {
   const handleSubmit = (e) => {
@@ -11,6 +12,7 @@ const ProfileSettings = () => {
       <div className={styles["main-body-container"]}>
         <div className={styles["main-body-pic"]}>
           {/* make this background a rotating album of the users pets if they have any */}
+          <img className={styles.img} src={petPic} alt="pet" />
         </div>
         <Card className={styles.card}>
           <Card.Body>
