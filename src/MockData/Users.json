@@ -6,6 +6,7 @@
     "password": "123456",
     "phoneNumber": "0586190696",
     "bio": "I love pets",
+    "savedPets": [1],
     "pets": [
       {
         "ownerID": 1,

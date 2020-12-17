@@ -18,8 +18,9 @@ const PetPage = () => {
       text = "Are you sure you want to foster this pet?";
     }
     let condition = window.confirm(text);
+    changePetStatus(status, condition);
   };
-  const changePetStatus = (status) => {
+  const changePetStatus = (status, condition) => {
     if (condition && status === "return") {
       // change pet.adoptionStatus to "Looking for a new home"
       // change pet.ownerId to null
@@ -33,6 +34,9 @@ const PetPage = () => {
       // change pet.ownerId to user.id
       // add to users pets
     }
+  };
+  const savePet = () => {
+    //user.savedPets.push(pet.id)
   };
   return (
     <div>
@@ -66,18 +70,18 @@ const PetPage = () => {
           </div>
           <div className="text-center w-100">
             {user.id === pet.ownerID && pet.adoptionStatus === "Fostered" && (
-              <Button variant="info" onClick={() => changePetStatus("adopt")}>
+              <Button variant="info" onClick={() => confirmChoice("adopt")}>
                 Adopt
               </Button>
             )}
             {!pet.ownerID && (
               <div>
-                <Button variant="info" onClick={() => changePetStatus("adopt")}>
+                <Button variant="info" onClick={() => confirmChoice("adopt")}>
                   Adopt
-                </Button>{" "}
+                </Button>
                 <Button
-                  variant="info"
-                  onClick={() => changePetStatus("foster")}
+                  variant="outline-info"
+                  onClick={() => confirmChoice("foster")}
                 >
                   Foster
                 </Button>
@@ -86,13 +90,15 @@ const PetPage = () => {
           </div>
           <div className="mt-2 text-center w-100">
             {user.id === pet.ownerID && (
-              <Button
-                variant="danger"
-                onClick={() => changePetStatus("return")}
-              >
+              <Button variant="danger" onClick={() => confirmChoice("return")}>
                 Return to adoption center
               </Button>
             )}
+          </div>
+          <div className="mt-2 text-center w-100">
+            <Button variant="danger" onClick={savePet}>
+              Save
+            </Button>
           </div>
         </div>
         <div className={styles["img-container"]}>
