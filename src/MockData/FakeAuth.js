@@ -1,5 +1,5 @@
 export const fakeAuth = {
-  isAuthenticated: false,
+  isAuthenticated: true,
   authenticate(cb) {
     fakeAuth.isAuthenticated = true;
     setTimeout(cb, 100); // fake async

@@ -7,9 +7,15 @@
   height: 100vh;
 }
 .main-container {
-  margin: 10%;
-  text-align: center;
+  height: calc(100vh - 58.92px);
   color: rgb(48, 30, 56);
+  padding: 5% 0 2% 0;
+}
+.main-row {
+  height: 100%;
+  width: 70%;
+  text-align: center;
+  overflow: auto;
 }
 .non-owner-link {
   color: #cccccc;

@@ -12,9 +12,9 @@ import ProfileSettings from "./Components/ProfileSettings";
 import users from "./MockData/Users.json";
 import PrivateRoute from "./Components/PrivateRoute";
 import { MyContext } from "./Context";
+import PetPage from "./Components/PetPage";
 function App() {
   const [user, setUser] = useState(users[0]);
-  console.log(user);
   return (
     <MyContext.Provider value={user}>
       <Router>
@@ -30,6 +30,9 @@ function App() {
           </Route>
           <Route path="/petSearch">
             <PetSearch />
+          </Route>
+          <Route path="/petPage">
+            <PetPage />
           </Route>
           <PrivateRoute path="/myPets">
             <MyPets />

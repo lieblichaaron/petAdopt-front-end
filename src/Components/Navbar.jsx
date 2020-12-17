@@ -10,9 +10,6 @@ const CustomNavbar = () => {
         PetAdopt
       </Navbar.Brand>
       <Nav className="mr-auto">
-        <NavLink className={styles["header-link"]} to="/home">
-          Home
-        </NavLink>
         <NavLink className={styles["header-link"]} to="/petSearch">
           Find a pet
         </NavLink>

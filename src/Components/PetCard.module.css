@@ -1,0 +1,29 @@
+.card-container {
+  background-color: rgb(224, 224, 224);
+  border-radius: 5px;
+  margin: 1rem;
+  height: 345px;
+  padding: 1rem;
+  transition: box-shadow 1s;
+  transition: background-color 1s;
+}
+.card-container:hover {
+  box-shadow: 0 0 1rem #515151;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.card-pic {
+  height: 100%;
+  border: 2px groove rgb(48, 48, 48);
+}
+.pic-container {
+  height: 50%;
+  background: url(../images/picForCardBackground.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.more-details {
+  color: rgb(102, 40, 102);
+}

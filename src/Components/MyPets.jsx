@@ -1,21 +1,32 @@
+import { useContext } from "react";
 import CustomNavbar from "./Navbar";
 import { Link } from "react-router-dom";
 import styles from "./MyPets.module.scss";
+import { MyContext } from "../Context";
+import PetCard from "./PetCard";
+import { Container, Row } from "react-bootstrap";
 const MyPets = () => {
+  const { pets } = useContext(MyContext);
   return (
     <div className={styles["page-container"]}>
       <CustomNavbar />
-      <div className={styles["main-container"]}>
-        {true && (
+      <Container className={styles["main-container"]}>
+        {pets ? (
+          <Row className={styles["main-row"]}>
+            {pets.map((pet) => (
+              <PetCard key={pet.id} pet={pet} />
+            ))}
+          </Row>
+        ) : (
           <h1>
             You currently do not own or foster any pets. <br />
             Looking to Adopt?
             <Link className={styles["non-owner-link"]} to="/petSearch">
-              Search pets
+              Find a new pet
             </Link>
           </h1>
         )}
-      </div>
+      </Container>
       <footer className={styles.footer}>
         <a href="https://www.freepik.com/photos/woman">
           Woman photo created by wayhomestudio - www.freepik.com
