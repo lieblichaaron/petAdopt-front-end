@@ -1,2 +1,3 @@
 import { createContext } from "react";
-export const MyContext = createContext();
+export const UserContext = createContext();
+export const PetContext = createContext();

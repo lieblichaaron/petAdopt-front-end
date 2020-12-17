@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { MyContext } from "../Context";
+import { UserContext } from "../Context";
 import styles from "./HomepageLoggedIn.module.css";
 import { Link } from "react-router-dom";
 import CustomNavbar from "./Navbar";
 const HomepageLoggedIn = () => {
-  const { fullName } = useContext(MyContext);
+  const { fullName } = useContext(UserContext);
   return (
     <div className={styles["page-container"]}>
       <CustomNavbar />

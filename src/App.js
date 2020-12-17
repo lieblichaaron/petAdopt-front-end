@@ -10,39 +10,56 @@ import HomepageLoggedIn from "./Components/HomepageLoggedIn";
 import MyPets from "./Components/MyPets";
 import ProfileSettings from "./Components/ProfileSettings";
 import users from "./MockData/Users.json";
+import pets from "./MockData/Pets.json";
 import PrivateRoute from "./Components/PrivateRoute";
-import { MyContext } from "./Context";
+import { UserContext, PetContext } from "./Context";
 import PetPage from "./Components/PetPage";
 function App() {
-  const [user, setUser] = useState(users[0]);
+  let petsObj = {};
+  pets.forEach((pet) => {
+    petsObj[pet.id] = pet;
+  });
+  let usersObj = {};
+  users.forEach((user) => {
+    usersObj[user.id] = user;
+  });
+  console.log(petsObj);
+  console.log(usersObj);
+  const [user, setUser] = useState(usersObj[1]);
+  const [pet, setPet] = useState(petsObj[1]);
+  const changePetState = (petId) => {
+    setPet(petsObj[petId]);
+  };
   return (
-    <MyContext.Provider value={user}>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <HomepageLoggedOut />
-          </Route>
-          <PrivateRoute path="/home">
-            <HomepageLoggedIn />
-          </PrivateRoute>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/petSearch">
-            <PetSearch />
-          </Route>
-          <Route path="/petPage">
-            <PetPage />
-          </Route>
-          <PrivateRoute path="/myPets">
-            <MyPets />
-          </PrivateRoute>
-          <PrivateRoute path="/profileSettings">
-            <ProfileSettings />
-          </PrivateRoute>
-        </Switch>
-      </Router>
-    </MyContext.Provider>
+    <UserContext.Provider value={user}>
+      <PetContext.Provider value={pet}>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <HomepageLoggedOut />
+            </Route>
+            <PrivateRoute path="/home">
+              <HomepageLoggedIn />
+            </PrivateRoute>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/petSearch">
+              <PetSearch switchPet={changePetState} />
+            </Route>
+            <Route path="/petPage">
+              <PetPage />
+            </Route>
+            <PrivateRoute path="/myPets">
+              <MyPets switchPet={changePetState} />
+            </PrivateRoute>
+            <PrivateRoute path="/profileSettings">
+              <ProfileSettings />
+            </PrivateRoute>
+          </Switch>
+        </Router>
+      </PetContext.Provider>
+    </UserContext.Provider>
   );
 }
 
