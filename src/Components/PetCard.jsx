@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom";
 
 const PetCard = (props) => {
   const history = useHistory();
-  const redirectToPetPage = () => {
+  const redirectToPetPage = (id) => {
+    props.switchPet(id);
     history.push("/petPage");
   };
   return (
@@ -14,7 +15,7 @@ const PetCard = (props) => {
       md={12}
       lg={5}
       className={styles["card-container"]}
-      onClick={redirectToPetPage}
+      onClick={() => redirectToPetPage(props.pet.id)}
     >
       <div className={styles["pic-container"]}>
         <img src={Picture} alt="pet picture" className={styles["card-pic"]} />

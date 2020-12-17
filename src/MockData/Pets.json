@@ -15,8 +15,8 @@
   },
   {
     "id": 2,
-    "type": "Dog",
-    "name": "Shaggy",
+    "type": "Cat",
+    "name": "Lucky",
     "adoptionStatus": "Adopted",
     "picture": "../images/picForProfileSettings.jpg",
     "height": "50cm",

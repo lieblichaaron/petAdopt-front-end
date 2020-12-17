@@ -23,8 +23,6 @@ function App() {
   users.forEach((user) => {
     usersObj[user.id] = user;
   });
-  console.log(petsObj);
-  console.log(usersObj);
   const [user, setUser] = useState(usersObj[1]);
   const [pet, setPet] = useState(petsObj[1]);
   const changePetState = (petId) => {

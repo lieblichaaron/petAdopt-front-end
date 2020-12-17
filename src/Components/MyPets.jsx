@@ -5,7 +5,8 @@ import styles from "./MyPets.module.scss";
 import { UserContext } from "../Context";
 import PetCard from "./PetCard";
 import { Container, Row } from "react-bootstrap";
-const MyPets = () => {
+
+const MyPets = (props) => {
   const { pets } = useContext(UserContext);
   return (
     <div className={styles["page-container"]}>
@@ -14,7 +15,7 @@ const MyPets = () => {
         {pets ? (
           <Row className={styles["main-row"]}>
             {pets.map((pet) => (
-              <PetCard key={pet.id} pet={pet} />
+              <PetCard key={pet.id} pet={pet} switchPet={props.switchPet} />
             ))}
           </Row>
         ) : (
