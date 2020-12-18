@@ -4,10 +4,19 @@ import { PetContext, UserContext } from "../Context";
 import styles from "./PetPage.module.css";
 import petPic from "../images/picForProfileSettings.jpg";
 import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const PetPage = () => {
   const pet = useContext(PetContext);
   const user = useContext(UserContext);
+  let heart;
+  if (user.savedPets.includes(pet.id)) {
+    heart = faHeart;
+  } else {
+    heart = farHeart;
+  }
   const confirmChoice = (status) => {
     let text;
     if (status === "return") {
@@ -36,7 +45,9 @@ const PetPage = () => {
     }
   };
   const savePet = () => {
-    //user.savedPets.push(pet.id)
+    alert("You can see your saved pets in the pet search page!");
+    user.savedPets.push(pet.id);
+    // put request to user
   };
   return (
     <div>
@@ -89,16 +100,20 @@ const PetPage = () => {
             )}
           </div>
           <div className="mt-2 text-center w-100">
+            <Button
+              title="Save to find pet easily on the search page!"
+              variant="outline-primary"
+              onClick={savePet}
+            >
+              <FontAwesomeIcon icon={heart} className={styles.heart} />
+            </Button>
+          </div>
+          <div className="mt-2 text-center w-100">
             {user.id === pet.ownerID && (
               <Button variant="danger" onClick={() => confirmChoice("return")}>
                 Return to adoption center
               </Button>
             )}
-          </div>
-          <div className="mt-2 text-center w-100">
-            <Button variant="danger" onClick={savePet}>
-              Save
-            </Button>
           </div>
         </div>
         <div className={styles["img-container"]}>

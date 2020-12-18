@@ -29,7 +29,7 @@ h1 {
 .img-container {
   background-color: rgb(46, 125, 139);
   width: 50%;
-  height: 100%;
+  height: 95%;
   margin: 2%;
   border-radius: 5%;
   overflow: hidden;
@@ -46,4 +46,7 @@ h1 {
   left: 0;
   right: 0;
   margin: auto;
+}
+.heart {
+  color: red;
 }
