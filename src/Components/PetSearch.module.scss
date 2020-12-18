@@ -1,0 +1,39 @@
+.page-container {
+  background: url("../images/girl-with-dog.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+.main-container {
+  height: calc(100vh - 58.92px);
+  color: rgb(48, 30, 56);
+  padding: 3% 0 2% 0;
+}
+.main-row {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.non-owner-link {
+  color: #cccccc;
+  padding: 5px;
+  margin: 3px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+}
+.footer a {
+  color: #cccccc;
+  &:hover {
+    text-decoration: none;
+  }
+}

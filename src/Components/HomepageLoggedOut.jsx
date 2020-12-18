@@ -52,7 +52,7 @@ const HomepageLoggedOut = () => {
         </div>
       </div>
       <div className={styles.footer}>
-        <Link className="mr-3" to="/search">
+        <Link className="mr-3" to="/petSearch">
           Search pets
         </Link>
         <Link to="/about">About us</Link>

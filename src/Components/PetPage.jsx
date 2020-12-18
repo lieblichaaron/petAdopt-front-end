@@ -7,7 +7,8 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 const PetPage = () => {
   const pet = useContext(PetContext);
   const user = useContext(UserContext);
@@ -17,7 +18,7 @@ const PetPage = () => {
   } else {
     heart = farHeart;
   }
-  const confirmChoice = (status) => {
+  const confirmChoice = async (status) => {
     let text;
     if (status === "return") {
       text = "Are you sure you want to retun your pet to the adoption center?";
@@ -26,28 +27,74 @@ const PetPage = () => {
     } else {
       text = "Are you sure you want to foster this pet?";
     }
-    let condition = window.confirm(text);
-    changePetStatus(status, condition);
+    confirmAlert({
+      title: "Confirm",
+      message: text,
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => changePetStatus(true, status),
+        },
+        {
+          label: "No",
+          onClick: () => changePetStatus(false, status),
+        },
+      ],
+    });
   };
-  const changePetStatus = (status, condition) => {
+  const changePetStatus = (condition, status) => {
     if (condition && status === "return") {
-      // change pet.adoptionStatus to "Looking for a new home"
-      // change pet.ownerId to null
-      //delete from users pets
+      pet.adoptionStatus = "Looking for a new home";
+      pet.ownerID = null;
+      let newUserPetsList = user.pets.filter((e) => e.id !== pet.id);
+      user.pets = newUserPetsList;
+      //   put request to user and pet
     } else if (condition && status === "adopt") {
-      // change pet.adoptionStatus to adopted
-      // change pet.ownerId to user.id
-      // add to users pets
+      pet.adoptionStatus = "Adopted";
+      pet.ownerID = user.id;
+      user.pets.push(pet);
+      let newUserPetsList = user.pets.filter(
+        (e) => e.id !== pet.id || e.adoptionStatus !== "Fostered"
+      );
+      user.pets = newUserPetsList;
+      //   put request to user and pet
     } else {
-      // change pet.status to fostered
-      // change pet.ownerId to user.id
-      // add to users pets
+      pet.adoptionStatus = "Fostered";
+      pet.ownerID = user.id;
+      user.pets.push(pet);
+      let newUserPetsList = user.pets.filter(
+        (e) => e.id !== pet.id || e.adoptionStatus !== "Adopted"
+      );
+      user.pets = newUserPetsList;
+      //   put request to user and pet
     }
   };
   const savePet = () => {
-    alert("You can see your saved pets in the pet search page!");
-    user.savedPets.push(pet.id);
-    // put request to user
+    if (user.savedPets.includes(pet.id)) {
+      confirmAlert({
+        title: "Confirm",
+        message: "You can see your saved pets in the pet search page!",
+        buttons: [
+          {
+            label: "ok",
+            onClick: () => user.savedPets.push(pet.id),
+          },
+        ],
+      });
+      // put request to user
+    } else {
+      confirmAlert({
+        title: "Confirm",
+        message: "You can see your saved pets in the pet search page!",
+        buttons: [
+          {
+            label: "ok",
+            onClick: () => user.savedPets.filter((petId) => petId !== pet.id),
+          },
+        ],
+      });
+      // put request to user
+    }
   };
   return (
     <div>

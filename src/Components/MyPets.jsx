@@ -16,7 +16,12 @@ const MyPets = (props) => {
           <Row className={styles["main-row"]}>
             <h1 className="text-center w-100">Check out your pets here!</h1>
             {pets.map((pet) => (
-              <PetCard key={pet.id} pet={pet} switchPet={props.switchPet} />
+              <PetCard
+                key={pet.id}
+                pet={pet}
+                switchPet={props.switchPet}
+                size={5}
+              />
             ))}
           </Row>
         ) : (

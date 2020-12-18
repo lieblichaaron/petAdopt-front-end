@@ -43,7 +43,7 @@ function App() {
               <About />
             </Route>
             <Route path="/petSearch">
-              <PetSearch switchPet={changePetState} />
+              <PetSearch switchPet={changePetState} pets={pets} />
             </Route>
             <Route path="/petPage">
               <PetPage />
