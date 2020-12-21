@@ -1,7 +1,9 @@
 import { Navbar, Nav } from "react-bootstrap";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../images/favicon-32x32.png";
 import styles from "./Navbar.module.css";
+import { fakeAuth } from "../MockData/FakeAuth";
+
 const CustomNavbar = () => {
   return (
     <Navbar className={styles["navbar"]}>
@@ -19,9 +21,14 @@ const CustomNavbar = () => {
         <NavLink className={styles["header-link"]} to="/profileSettings">
           Profile settings
         </NavLink>
-        <NavLink className={styles["header-link"]} to="/about">
+        <NavLink className={styles["header-link"]} to="/home">
           About us
         </NavLink>
+        {fakeAuth.isAdmin && (
+          <NavLink className={styles["header-link"]} to="/addPet">
+            Add pet
+          </NavLink>
+        )}
       </Nav>
     </Navbar>
   );

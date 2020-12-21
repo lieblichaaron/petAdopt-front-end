@@ -1,6 +1,6 @@
 import CustomNavbar from "./Navbar";
 import { useContext } from "react";
-import { PetContext, UserContext } from "../Context";
+import { CurrentPetContext, UserContext } from "../Context";
 import styles from "./PetPage.module.css";
 import petPic from "../images/picForProfileSettings.jpg";
 import { Button } from "react-bootstrap";
@@ -10,7 +10,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 const PetPage = () => {
-  const pet = useContext(PetContext);
+  const pet = useContext(CurrentPetContext);
   const user = useContext(UserContext);
   let heart;
   if (user.savedPets.includes(pet.id)) {
@@ -33,23 +33,22 @@ const PetPage = () => {
       buttons: [
         {
           label: "Yes",
-          onClick: () => changePetStatus(true, status),
+          onClick: () => changePetStatus(status),
         },
         {
           label: "No",
-          onClick: () => changePetStatus(false, status),
         },
       ],
     });
   };
-  const changePetStatus = (condition, status) => {
-    if (condition && status === "return") {
+  const changePetStatus = (status) => {
+    if (status === "return") {
       pet.adoptionStatus = "Looking for a new home";
       pet.ownerID = null;
       let newUserPetsList = user.pets.filter((e) => e.id !== pet.id);
       user.pets = newUserPetsList;
       //   put request to user and pet
-    } else if (condition && status === "adopt") {
+    } else if (status === "adopt") {
       pet.adoptionStatus = "Adopted";
       pet.ownerID = user.id;
       user.pets.push(pet);

@@ -6,10 +6,38 @@
   background-size: cover;
   height: 100vh;
 }
+.search-bar-container {
+  background-color: rgb(46, 125, 139);
+  color: rgb(125, 160, 170);
+  display: flex;
+  flex-flow: row nowrap;
+  height: 3.5rem;
+  padding: 0.4rem 2.5rem;
+}
+.filter-select {
+  background-color: rgb(150, 209, 219);
+  border: none;
+  border-radius: 2px;
+  color: white;
+  &:hover {
+    background-color: white;
+    color: rgb(46, 125, 139);
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    background-color: rgb(150, 209, 219);
+    columns: white;
+  }
+}
 .main-container {
-  height: calc(100vh - 58.92px);
+  height: calc(100vh - 130px);
+  max-width: 100%;
   color: rgb(48, 30, 56);
-  padding: 3% 0 2% 0;
+  padding: 0 0 2% 0;
+  -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
 }
 .main-row {
   height: 100%;

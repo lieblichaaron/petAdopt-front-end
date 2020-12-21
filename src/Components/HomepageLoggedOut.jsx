@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
-
+import About from "./About";
 const HomepageLoggedOut = () => {
   const [signupModalState, setSignupModalState] = useState(false);
   const [loginModalState, setLoginModalState] = useState(false);
@@ -48,16 +48,16 @@ const HomepageLoggedOut = () => {
             >
               Log in
             </Button>
+            <h1 className="pt-5">
+              Come to see some cute pets? Check them out{" "}
+              <Link className="mr-3" to="/petSearch">
+                here
+              </Link>
+            </h1>
           </div>
         </div>
       </div>
-      <div className={styles.footer}>
-        <Link className="mr-3" to="/petSearch">
-          Search pets
-        </Link>
-        <Link to="/about">About us</Link>
-        <p>&copy; 2020 PetAdopt, Inc.</p>
-      </div>
+      <About />
     </div>
   );
 };

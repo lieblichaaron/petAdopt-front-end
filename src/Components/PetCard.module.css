@@ -1,7 +1,7 @@
 .card-container {
   background-color: rgb(224, 224, 224);
   border-radius: 5px;
-  margin: 1rem;
+  margin: 0.5rem;
   height: 345px;
   padding: 1rem;
   transition: box-shadow 1s;

@@ -1,0 +1,12 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.dd-wrapper {
+  margin-right: 1rem !important;
+  font-size: 1rem !important;
+}
+.dd-list-item {
+  font-size: 1rem !important;
+}

@@ -1,4 +1,5 @@
 export const fakeAuth = {
+  isAdmin: true,
   isAuthenticated: true,
   authenticate(cb) {
     fakeAuth.isAuthenticated = true;

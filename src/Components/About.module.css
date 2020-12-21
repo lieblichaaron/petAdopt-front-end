@@ -1,0 +1,12 @@
+.container {
+  padding: 1.5rem;
+  background-color: rgb(46, 125, 139);
+  height: 30vh;
+  width: 100%;
+}
+.about-header {
+  color: white;
+}
+.about-p {
+  color: white;
+}
