@@ -6,14 +6,10 @@ import { useState } from "react";
 const SignupModal = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const formFields = {
-    id: null,
     fullName: "",
     email: "",
     password: "",
     phoneNumber: "",
-    bio: "",
-    savedPets: [],
-    pets: [],
   };
   const [formInfo, setFormInfo] = useState(formFields);
   const [error, setError] = useState("");
@@ -21,14 +17,6 @@ const SignupModal = (props) => {
   const handleInput = (e) => {
     if (e.target.name === "password confirmation") {
       setPasswordConfirmation(e.target.value);
-    } else if (e.target.name === "fullName") {
-      let value = e.target.value[0]
-        ? e.target.value[0].toUpperCase() + e.target.value.substring(1)
-        : e.target.value;
-      setFormInfo({
-        ...formInfo,
-        [e.target.name]: value,
-      });
     } else {
       setFormInfo({
         ...formInfo,
@@ -44,7 +32,13 @@ const SignupModal = (props) => {
         setError("");
       }, 5000);
     } else {
-      console.log(formInfo);
+      fetch("http://localhost:5000/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formInfo),
+      });
       fakeAuth.authenticate(() => {
         setUserLoggedIn(true);
       });
@@ -104,8 +98,10 @@ const SignupModal = (props) => {
           </Form.Group>
           <Form.Group id="phone-number">
             <Form.Label>Phone number</Form.Label>
+            <small>(Format: 1234567890)</small>
             <Form.Control
-              type="phone-number"
+              type="tel"
+              pattern="[0-9]{10}"
               name="phoneNumber"
               onChange={handleInput}
               required
