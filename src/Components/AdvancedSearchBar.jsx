@@ -9,10 +9,10 @@ class AdvancedSearchBar extends react.Component {
     super(props);
     this.state = state;
     this.specificationsObj = {
-      type: "",
-      adoptionStatus: "",
-      height: "",
-      weight: "",
+      type: "Species",
+      adoptionStatus: "Adoption status",
+      height: "Height(cm)",
+      weight: "Weight(kg)",
     };
   }
   static contextType = PetsContext;
@@ -63,17 +63,17 @@ class AdvancedSearchBar extends react.Component {
     const animalsToSearch = this.context.filter(
       (pet) =>
         (pet.type === this.specificationsObj.type ||
-          !this.specificationsObj.type) &&
+          this.specificationsObj.type === "Species") &&
         (pet.adoptionStatus === this.specificationsObj.adoptionStatus ||
-          !this.specificationsObj.adoptionStatus) &&
+          this.specificationsObj.adoptionStatus === "Adoption status") &&
         ((pet.height >= parseInt(this.specificationsObj.height.split("-")[0]) &&
           pet.height <=
             parseInt(this.specificationsObj.height.split("-")[1])) ||
-          !this.specificationsObj.height) &&
+          this.specificationsObj.height === "Height(cm)") &&
         ((pet.weight >= parseInt(this.specificationsObj.weight.split("-")[0]) &&
           pet.weight <=
             parseInt(this.specificationsObj.weight.split("-")[1])) ||
-          !this.specificationsObj.weight) &&
+          this.specificationsObj.weight === "Weight(kg)") &&
         (pet.name === this.state.animalName || !this.state.animalName)
     );
     this.props.setSearchPets(animalsToSearch);
