@@ -59,11 +59,7 @@ const AddPet = () => {
           <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group id="type">
               <Form.Label>Type</Form.Label>
-              <Form.Control
-                name="type"
-                type="text"
-                onChange={(e) => handleInput(e)}
-              />
+              <Form.Control name="type" type="text" onChange={handleInput} />
             </Form.Group>
             <Form.Group id="name">
               <Form.Label>Name</Form.Label>

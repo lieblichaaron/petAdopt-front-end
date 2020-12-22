@@ -126,7 +126,7 @@ const PetPage = () => {
             <div>{pet.bio}</div>
           </div>
           <div className="text-center w-100">
-            {user.id === pet.ownerID && pet.adoptionStatus === "Fostered" && (
+            {pet.adoptionStatus === "Fostered" && (
               <Button variant="info" onClick={() => confirmChoice("adopt")}>
                 Adopt
               </Button>
