@@ -1,0 +1,52 @@
+.name {
+  display: block;
+  background-color: rgb(46, 125, 139);
+  color: rgb(125, 160, 170);
+  padding-left: 5%;
+}
+.main-body-container {
+  display: flex;
+  flex-flow: row nowrap;
+  height: calc(100vh - 150px);
+}
+.info-container {
+  margin: 2%;
+  width: 50%;
+}
+.facts-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
+h3,
+h1 {
+  color: rgb(46, 125, 139);
+}
+.bio-container {
+  margin: 5%;
+  text-align: center;
+}
+.img-container {
+  background-color: rgb(46, 125, 139);
+  width: 50%;
+  height: 95%;
+  margin: 2%;
+  border-radius: 5%;
+  overflow: hidden;
+  position: relative;
+}
+.img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.heart {
+  color: red;
+}

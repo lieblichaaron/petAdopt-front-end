@@ -1,0 +1,11 @@
+.navbar {
+  background-color: rgb(46, 125, 139, 0.8);
+}
+.header-link {
+  color: #cccccc;
+  margin: 0 1rem;
+}
+.header-link:hover {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+}

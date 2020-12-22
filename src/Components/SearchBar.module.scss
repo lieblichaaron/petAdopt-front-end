@@ -1,0 +1,51 @@
+.form {
+  display: flex;
+  flex-flow: row;
+}
+.search {
+  margin: 0 1rem;
+  height: 2.7rem;
+  background-color: rgb(150, 209, 219);
+  border: none;
+  border-radius: 2px;
+  color: white;
+  &:hover {
+    background-color: white;
+    color: rgb(46, 125, 139);
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    background-color: rgb(150, 209, 219);
+    columns: white;
+  }
+}
+.name-input {
+  border-radius: 2px;
+  border: none;
+  color: #7da0aa;
+  font-weight: 300;
+  padding: 0 1rem;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #7da0aa;
+    opacity: 1; /* Firefox */
+    font-weight: 300;
+  }
+
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #7da0aa;
+    font-weight: 300;
+  }
+
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #7da0aa;
+    font-weight: 300;
+  }
+}
