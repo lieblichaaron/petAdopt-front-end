@@ -3,6 +3,7 @@ import Logo from "../images/favicon-32x32.png";
 import { fakeAuth } from "../MockData/FakeAuth";
 import { Redirect } from "react-router-dom";
 import { useState } from "react";
+import { signup } from "../lib/serverFuncs";
 const SignupModal = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const formFields = {
@@ -32,13 +33,7 @@ const SignupModal = (props) => {
         setError("");
       }, 5000);
     } else {
-      fetch("http://localhost:5000/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formInfo),
-      });
+      signup(formInfo);
       fakeAuth.authenticate(() => {
         setUserLoggedIn(true);
       });
@@ -83,6 +78,7 @@ const SignupModal = (props) => {
             <Form.Control
               type="password"
               name="password"
+              minLength="6"
               onChange={handleInput}
               required
             />

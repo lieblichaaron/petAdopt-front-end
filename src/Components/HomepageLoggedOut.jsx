@@ -16,7 +16,7 @@ const HomepageLoggedOut = () => {
     setLoginModalState(condition);
   };
   return (
-    <div>
+    <div className={styles["main-container"]}>
       <SignupModal
         modalState={signupModalState}
         closeModal={changeSignupModalState}
@@ -57,7 +57,9 @@ const HomepageLoggedOut = () => {
           </div>
         </div>
       </div>
-      <About />
+      <div className={styles["footer"]}>
+        <About />
+      </div>
     </div>
   );
 };
