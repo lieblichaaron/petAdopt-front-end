@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CustomNavbar from "./Navbar";
+import CustomNavbar from "../Navbar/Navbar";
 import { Form, Button, Card, DropdownButton, Dropdown } from "react-bootstrap";
 import styles from "./AddPet.module.css";
 

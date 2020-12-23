@@ -1,7 +1,7 @@
 import styles from "./ProfileSettings.module.css";
 import { Form, Button, Card } from "react-bootstrap";
-import petPic from "../images/picForProfileSettings.jpg";
-import CustomNavbar from "./Navbar";
+import petPic from "../../images/picForProfileSettings.jpg";
+import CustomNavbar from "../Navbar/Navbar";
 const ProfileSettings = () => {
   const handleSubmit = (e) => {
     e.preventDefault();

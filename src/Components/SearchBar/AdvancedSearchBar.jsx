@@ -1,7 +1,7 @@
 import react from "react";
 import styles from "./SearchBar.module.scss";
 import { Dropdown } from "reactjs-dropdown-component";
-import { PetsContext } from "../Context";
+import { PetsContext } from "../../Context";
 import state from "./AdvancedSearchArrays";
 
 class AdvancedSearchBar extends react.Component {

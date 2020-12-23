@@ -1,7 +1,7 @@
 import styles from "./SearchBar.module.scss";
 import { Dropdown } from "reactjs-dropdown-component";
 import { useState, useContext } from "react";
-import { PetsContext } from "../Context";
+import { PetsContext } from "../../Context";
 
 const BasicSearchBar = (props) => {
   const pets = useContext(PetsContext);

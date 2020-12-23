@@ -1,8 +1,8 @@
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import Logo from "../images/favicon-32x32.png";
+import Logo from "../../images/favicon-32x32.png";
 import styles from "./Navbar.module.css";
-import { fakeAuth } from "../MockData/FakeAuth";
+import { fakeAuth } from "../../MockData/FakeAuth";
 
 const CustomNavbar = () => {
   return (

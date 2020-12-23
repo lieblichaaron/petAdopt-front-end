@@ -1,6 +1,6 @@
 import { Col } from "react-bootstrap";
 import styles from "./PetCard.module.css";
-import Picture from "../images/picForProfileSettings.jpg";
+import Picture from "../../images/picForProfileSettings.jpg";
 import { useHistory } from "react-router-dom";
 
 const PetCard = (props) => {

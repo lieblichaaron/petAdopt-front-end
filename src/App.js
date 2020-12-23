@@ -3,17 +3,17 @@ import "./App.css";
 import "fontsource-roboto";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import PetSearch from "./Components/PetSearch";
-import HomepageLoggedOut from "./Components/HomepageLoggedOut";
-import HomepageLoggedIn from "./Components/HomepageLoggedIn";
-import MyPets from "./Components/MyPets";
-import ProfileSettings from "./Components/ProfileSettings";
+import PetSearch from "./Components/PetSearch/PetSearch";
+import HomepageLoggedOut from "./Components/HomePageOut/HomepageLoggedOut";
+import HomepageLoggedIn from "./Components/HomePageIn/HomepageLoggedIn";
+import MyPets from "./Components/MyPets/MyPets";
+import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import users from "./MockData/Users.json";
 import pets from "./MockData/Pets.json";
 import PrivateRoute from "./Components/PrivateRoute";
 import { UserContext, CurrentPetContext, PetsContext } from "./Context";
-import PetPage from "./Components/PetPage";
-import AddPet from "./Components/AddPet";
+import PetPage from "./Components/PetPage/PetPage";
+import AddPet from "./Components/AddPet/AddPet";
 
 function App() {
   let petsObj = {};

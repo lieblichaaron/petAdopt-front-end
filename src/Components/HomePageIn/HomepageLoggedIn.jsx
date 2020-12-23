@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { UserContext } from "../Context";
+import { UserContext } from "../../Context";
 import styles from "./HomepageLoggedIn.module.css";
 import { Link } from "react-router-dom";
-import CustomNavbar from "./Navbar";
-import About from "./About";
+import CustomNavbar from "../Navbar/Navbar";
+import About from "../About/About";
 const HomepageLoggedIn = () => {
   const { fullName } = useContext(UserContext);
   return (

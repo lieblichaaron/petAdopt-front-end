@@ -1,8 +1,8 @@
-import CustomNavbar from "./Navbar";
+import CustomNavbar from "../Navbar/Navbar";
 import { useContext } from "react";
-import { CurrentPetContext, UserContext } from "../Context";
+import { CurrentPetContext, UserContext } from "../../Context";
 import styles from "./PetPage.module.css";
-import petPic from "../images/picForProfileSettings.jpg";
+import petPic from "../../images/picForProfileSettings.jpg";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";

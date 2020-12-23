@@ -1,11 +1,11 @@
-import { UserContext, PetsContext } from "../Context";
+import { UserContext, PetsContext } from "../../Context";
 import { useContext, useState } from "react";
 import { Container, Row } from "react-bootstrap";
-import PetCard from "./PetCard";
+import PetCard from "../PetCard/PetCard";
 import styles from "./PetSearch.module.scss";
-import CustomNavbar from "./Navbar";
-import BasicSearchBar from "./BasicSearchBar";
-import AdvancedSearchBar from "./AdvancedSearchBar";
+import CustomNavbar from "../Navbar/Navbar";
+import BasicSearchBar from "../SearchBar/BasicSearchBar";
+import AdvancedSearchBar from "../SearchBar/AdvancedSearchBar";
 
 const Search = (props) => {
   //to access their saved pets

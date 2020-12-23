@@ -1,11 +1,11 @@
 import { Button } from "react-bootstrap";
 import styles from "./HomepageLoggedOut.module.css";
-import Logo from "../images/favicon-32x32.png";
+import Logo from "../../images/favicon-32x32.png";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import SignupModal from "./SignupModal";
-import LoginModal from "./LoginModal";
-import About from "./About";
+import SignupModal from "../Modals/SignupModal";
+import LoginModal from "../Modals/LoginModal";
+import About from "../About/About";
 const HomepageLoggedOut = () => {
   const [signupModalState, setSignupModalState] = useState(false);
   const [loginModalState, setLoginModalState] = useState(false);

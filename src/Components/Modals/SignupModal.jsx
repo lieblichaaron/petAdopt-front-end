@@ -1,9 +1,9 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
-import Logo from "../images/favicon-32x32.png";
-import { fakeAuth } from "../MockData/FakeAuth";
+import Logo from "../../images/favicon-32x32.png";
+import { fakeAuth } from "../../MockData/FakeAuth";
 import { Redirect } from "react-router-dom";
 import { useState } from "react";
-import { signup } from "../lib/serverFuncs";
+import { signup } from "../../lib/serverFuncs";
 const SignupModal = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const formFields = {
