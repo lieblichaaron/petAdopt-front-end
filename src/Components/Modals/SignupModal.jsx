@@ -1,6 +1,6 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import Logo from "../../images/favicon-32x32.png";
-import { fakeAuth } from "../../MockData/FakeAuth";
+import { auth } from "../../MockData/Auth";
 import { Redirect } from "react-router-dom";
 import { useState } from "react";
 import { signup } from "../../lib/serverFuncs";
@@ -25,7 +25,7 @@ const SignupModal = (props) => {
       });
     }
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (passwordConfirmation !== formInfo.password) {
       setError("Passwords do not match");
@@ -33,10 +33,14 @@ const SignupModal = (props) => {
         setError("");
       }, 5000);
     } else {
-      signup(formInfo);
-      fakeAuth.authenticate(() => {
+      const currentUserId = await signup(formInfo);
+      if (currentUserId) {
+        auth.authenticate();
+        props.setCurrentUserId(currentUserId);
         setUserLoggedIn(true);
-      });
+      } else {
+        setError("Server is down, please try again later");
+      }
     }
   };
   if (userLoggedIn) {

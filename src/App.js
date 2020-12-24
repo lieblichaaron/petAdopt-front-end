@@ -24,19 +24,19 @@ function App() {
   users.forEach((user) => {
     usersObj[user.id] = user;
   });
-  const [user, setUser] = useState(usersObj[1]);
+  const [currentUserId, setCurrentUserId] = useState(null);
   const [pet, setPet] = useState(petsObj[1]);
   const changePetState = (petId) => {
     setPet(petsObj[petId]);
   };
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={currentUserId}>
       <CurrentPetContext.Provider value={pet}>
         <PetsContext.Provider value={pets}>
           <Router>
             <Switch>
               <Route exact path="/">
-                <HomepageLoggedOut />
+                <HomepageLoggedOut setCurrentUserId={setCurrentUserId} />
               </Route>
               <PrivateRoute path="/home">
                 <HomepageLoggedIn />

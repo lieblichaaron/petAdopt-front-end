@@ -1,16 +1,12 @@
 import { Route, Redirect } from "react-router-dom";
-import { fakeAuth } from "../MockData/FakeAuth";
+import { auth } from "../MockData/Auth";
 
 const PrivateRoute = ({ children, ...rest }) => {
   return (
     <Route
       {...rest}
       render={() => {
-        return fakeAuth.isAuthenticated === true ? (
-          children
-        ) : (
-          <Redirect to="/" />
-        );
+        return auth.isAuthenticated === true ? children : <Redirect to="/" />;
       }}
     />
   );

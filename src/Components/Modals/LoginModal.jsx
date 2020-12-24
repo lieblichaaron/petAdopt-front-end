@@ -1,10 +1,11 @@
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Alert } from "react-bootstrap";
 import { useState } from "react";
 import Logo from "../../images/favicon-32x32.png";
-import { fakeAuth } from "../../MockData/FakeAuth";
+import { auth } from "../../MockData/Auth";
 import { Redirect } from "react-router-dom";
 import { login } from "../../lib/serverFuncs";
 const LoginModal = (props) => {
+  const [error, setError] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const formFields = {
     email: "",
@@ -17,12 +18,16 @@ const LoginModal = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(formInfo);
-    fakeAuth.authenticate(() => {
+    const currentUserId = await login(formInfo);
+    if (currentUserId) {
+      auth.authenticate();
+      props.setCurrentUserId(currentUserId);
       setUserLoggedIn(true);
-    });
+    } else {
+      setError("Server is down, please try again later");
+    }
   };
   if (userLoggedIn) {
     return <Redirect to="/home" />;
@@ -35,6 +40,7 @@ const LoginModal = (props) => {
         </div>
         <Modal.Title className="text-center w-100">Log in</Modal.Title>
       </Modal.Header>
+      {error && <Alert variant="danger">{error}</Alert>}
       <Modal.Body>
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group id="email">

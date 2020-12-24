@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import CustomNavbar from "../Navbar/Navbar";
 import About from "../About/About";
 const HomepageLoggedIn = () => {
-  const { fullName } = useContext(UserContext);
+  const id = useContext(UserContext);
   return (
     <div>
       <div className={styles["page-container"]}>
         <CustomNavbar />
         <div className={styles["main-container"]}>
-          <h1>Welcome back, {fullName}!</h1>
+          <h1>Welcome back, {id}!</h1>
           <h4>
             Check out your furry friends on your
             <Link className={styles["welcome-link"]} to="/myPets">
