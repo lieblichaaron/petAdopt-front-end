@@ -33,3 +33,13 @@ export const login = async (formInfo) => {
     return false;
   }
 };
+
+export const loginWithToken = async (token) => {
+  try {
+    const response = await fetch(`${userBaseUrl}/login/${token}`);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    return false;
+  }
+};

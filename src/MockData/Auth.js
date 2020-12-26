@@ -1,6 +1,9 @@
+import Cookie from "js-cookie";
+const cookie = Cookie.getJSON("jwt");
+/*fetch user with token*/
 export const auth = {
   isAdmin: false,
-  isAuthenticated: false,
+  isAuthenticated: cookie ? true : false,
   authenticate() {
     auth.isAuthenticated = true;
   },

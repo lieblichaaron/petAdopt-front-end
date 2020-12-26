@@ -9,7 +9,7 @@ import AdvancedSearchBar from "../SearchBar/AdvancedSearchBar";
 
 const Search = (props) => {
   //to access their saved pets
-  const { savedPets } = useContext(UserContext);
+  // const { savedPets } = useContext(UserContext);
   const [advancedSearch, setAdvancedSearch] = useState(false);
   const [searchPets, setSearchPets] = useState(null);
   const [filterOption, setFilterOption] = useState("+");

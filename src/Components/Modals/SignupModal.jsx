@@ -1,6 +1,5 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import Logo from "../../images/favicon-32x32.png";
-import { auth } from "../../MockData/Auth";
 import { Redirect } from "react-router-dom";
 import { useState } from "react";
 import { signup } from "../../lib/serverFuncs";
@@ -34,9 +33,8 @@ const SignupModal = (props) => {
       }, 5000);
     } else {
       const currentUserId = await signup(formInfo);
+      await props.setCurrentUserId(currentUserId);
       if (currentUserId) {
-        auth.authenticate();
-        props.setCurrentUserId(currentUserId);
         setUserLoggedIn(true);
       } else {
         setError("Server is down, please try again later");

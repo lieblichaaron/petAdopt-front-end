@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import "fontsource-roboto";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import PetSearch from "./Components/PetSearch/PetSearch";
 import HomepageLoggedOut from "./Components/HomePageOut/HomepageLoggedOut";
 import HomepageLoggedIn from "./Components/HomePageIn/HomepageLoggedIn";
@@ -11,9 +16,12 @@ import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import users from "./MockData/Users.json";
 import pets from "./MockData/Pets.json";
 import PrivateRoute from "./Components/PrivateRoute";
+import AdminRoute from "./Components/AdminRoute";
 import { UserContext, CurrentPetContext, PetsContext } from "./Context";
 import PetPage from "./Components/PetPage/PetPage";
 import AddPet from "./Components/AddPet/AddPet";
+import Cookie from "js-cookie";
+const cookie = Cookie.getJSON("jwt");
 
 function App() {
   let petsObj = {};
@@ -24,7 +32,7 @@ function App() {
   users.forEach((user) => {
     usersObj[user.id] = user;
   });
-  const [currentUserId, setCurrentUserId] = useState(null);
+  const [currentUserId, setCurrentUserId] = useState();
   const [pet, setPet] = useState(petsObj[1]);
   const changePetState = (petId) => {
     setPet(petsObj[petId]);
@@ -36,10 +44,14 @@ function App() {
           <Router>
             <Switch>
               <Route exact path="/">
-                <HomepageLoggedOut setCurrentUserId={setCurrentUserId} />
+                {cookie ? (
+                  <Redirect to="/home" />
+                ) : (
+                  <HomepageLoggedOut setCurrentUserId={setCurrentUserId} />
+                )}
               </Route>
               <PrivateRoute path="/home">
-                <HomepageLoggedIn />
+                <HomepageLoggedIn setCurrentUserId={setCurrentUserId} />
               </PrivateRoute>
               <Route path="/petSearch">
                 <PetSearch switchPet={changePetState} />
@@ -53,9 +65,9 @@ function App() {
               <PrivateRoute path="/profileSettings">
                 <ProfileSettings />
               </PrivateRoute>
-              <PrivateRoute path="/addPet">
+              <AdminRoute path="/addPet">
                 <AddPet />
-              </PrivateRoute>
+              </AdminRoute>
             </Switch>
           </Router>
         </PetsContext.Provider>

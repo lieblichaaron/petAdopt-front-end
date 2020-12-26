@@ -1,11 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../Context";
 import styles from "./HomepageLoggedIn.module.css";
 import { Link } from "react-router-dom";
 import CustomNavbar from "../Navbar/Navbar";
 import About from "../About/About";
-const HomepageLoggedIn = () => {
+import { loginWithToken } from "../../lib/serverFuncs";
+import Cookie from "js-cookie";
+const cookie = Cookie.getJSON("jwt");
+const HomepageLoggedIn = (props) => {
   const id = useContext(UserContext);
+  useEffect(() => {
+    if (!id) {
+      loginWithToken(cookie).then((id) => {
+        props.setCurrentUserId(id);
+      });
+    }
+  }, []);
   return (
     <div>
       <div className={styles["page-container"]}>
