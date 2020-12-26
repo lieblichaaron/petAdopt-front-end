@@ -32,7 +32,11 @@ const LoginModal = (props) => {
     return <Redirect to="/home" />;
   }
   return (
-    <Modal show={props.modalState} onHide={() => props.closeModal(false)}>
+    <Modal
+      animation={false}
+      show={props.modalState}
+      onHide={() => props.closeModal(false)}
+    >
       <Modal.Header closeButton>
         <div>
           <img src={Logo} alt="logo" />
