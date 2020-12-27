@@ -49,8 +49,11 @@ const AddPet = () => {
     let formData = new FormData();
     formData.append("data", JSON.stringify(formInfo));
     formData.append("picture", picture);
-
-    const response = await addPet(formData);
+    const data = await addPet(formData);
+    if (data) {
+      e.target.reset();
+      setAdoptionStatus("Select");
+    }
   };
   return (
     <div>
@@ -126,7 +129,6 @@ const AddPet = () => {
                 name="hypoallergenic"
                 type="checkbox"
                 onChange={handleInput}
-                required
               />
             </Form.Group>
             <Form.Group id="dietary restrictions">
