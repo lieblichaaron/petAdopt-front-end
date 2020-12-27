@@ -1,3 +1,4 @@
+import { Redirect } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../Context";
 import styles from "./HomepageLoggedIn.module.css";
@@ -6,13 +7,17 @@ import CustomNavbar from "../Navbar/Navbar";
 import About from "../About/About";
 import { loginWithToken } from "../../lib/serverFuncs";
 import Cookie from "js-cookie";
-const cookie = Cookie.getJSON("jwt");
 const HomepageLoggedIn = (props) => {
   const id = useContext(UserContext);
   useEffect(() => {
     if (!id) {
-      loginWithToken(cookie).then((id) => {
-        props.setCurrentUserId(id);
+      loginWithToken().then((id) => {
+        if (id) {
+          props.setCurrentUserId(id);
+        } else {
+          Cookie.remove("jwt");
+          return <Redirect to="/" />;
+        }
       });
     }
   }, []);

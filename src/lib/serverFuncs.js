@@ -34,9 +34,11 @@ export const login = async (formInfo) => {
   }
 };
 
-export const loginWithToken = async (token) => {
+export const loginWithToken = async () => {
   try {
-    const response = await fetch(`${userBaseUrl}/login/${token}`);
+    const response = await fetch(`${userBaseUrl}/login/token`, {
+      credentials: "include",
+    });
     const data = await response.json();
     return data;
   } catch (e) {
