@@ -2,22 +2,23 @@ import { useState } from "react";
 import CustomNavbar from "../Navbar/Navbar";
 import { Form, Button, Card, DropdownButton, Dropdown } from "react-bootstrap";
 import styles from "./AddPet.module.css";
+import { addPet } from "../../lib/serverFuncs";
 
 const AddPet = () => {
   const formFields = {
     type: "",
     name: "",
     adoptionStatus: "",
-    picture: "",
     height: "",
     weight: "",
     color: "",
     bio: "",
     hypoallergenic: null,
-    dietaryRestrictions: null,
+    dietaryRestrictions: "",
     breedOfAnimal: "",
   };
   const [formInfo, setFormInfo] = useState(formFields);
+  const [picture, setPicture] = useState(null);
   const [adoptionStatus, setAdoptionStatus] = useState("Select");
   const handleInput = (e) => {
     if (!e.target) {
@@ -32,10 +33,7 @@ const AddPet = () => {
         [e.target.name]: e.target.checked,
       });
     } else if (e.target.type === "file") {
-      setFormInfo({
-        ...formInfo,
-        [e.target.name]: e.target.files[0],
-      });
+      setPicture(e.target.files[0]);
     } else {
       let value = e.target.value[0]
         ? e.target.value[0].toUpperCase() + e.target.value.substring(1)
@@ -46,9 +44,13 @@ const AddPet = () => {
       });
     }
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formInfo);
+    let formData = new FormData();
+    formData.append("data", JSON.stringify(formInfo));
+    formData.append("picture", picture);
+
+    const response = await addPet(formData);
   };
   return (
     <div>
@@ -59,11 +61,21 @@ const AddPet = () => {
           <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group id="type">
               <Form.Label>Type</Form.Label>
-              <Form.Control name="type" type="text" onChange={handleInput} />
+              <Form.Control
+                required
+                name="type"
+                type="text"
+                onChange={handleInput}
+              />
             </Form.Group>
             <Form.Group id="name">
               <Form.Label>Name</Form.Label>
-              <Form.Control name="name" type="text" onChange={handleInput} />
+              <Form.Control
+                required
+                name="name"
+                type="text"
+                onChange={handleInput}
+              />
             </Form.Group>
             <Form.Group id="adoption status">
               <Form.Label>Adoption Status</Form.Label>
@@ -72,6 +84,7 @@ const AddPet = () => {
                 id="dropdown-basic-button"
                 onSelect={handleInput}
                 title={adoptionStatus}
+                required
               >
                 <Dropdown.Item eventKey="Adopted">Adopted</Dropdown.Item>
                 <Dropdown.Item eventKey="Fostered">Fostered</Dropdown.Item>
@@ -82,15 +95,30 @@ const AddPet = () => {
             </Form.Group>
             <Form.Group id="height">
               <Form.Label>Height(cm)</Form.Label>
-              <Form.Control name="height" type="text" onChange={handleInput} />
+              <Form.Control
+                required
+                name="height"
+                type="text"
+                onChange={handleInput}
+              />
             </Form.Group>
             <Form.Group id="weight">
               <Form.Label>Weight(kg)</Form.Label>
-              <Form.Control name="weight" type="text" onChange={handleInput} />
+              <Form.Control
+                required
+                name="weight"
+                type="text"
+                onChange={handleInput}
+              />
             </Form.Group>
             <Form.Group id="color">
               <Form.Label>Color</Form.Label>
-              <Form.Control name="color" type="text" onChange={handleInput} />
+              <Form.Control
+                required
+                name="color"
+                type="text"
+                onChange={handleInput}
+              />
             </Form.Group>
             <Form.Group id="hypoallergenic">
               <Form.Label>Hypoallergenic (check if true)</Form.Label>
@@ -98,6 +126,7 @@ const AddPet = () => {
                 name="hypoallergenic"
                 type="checkbox"
                 onChange={handleInput}
+                required
               />
             </Form.Group>
             <Form.Group id="dietary restrictions">
@@ -116,15 +145,23 @@ const AddPet = () => {
                 name="breedOfAnimal"
                 type="text"
                 onChange={handleInput}
+                required
               />
             </Form.Group>
             <Form.Group id="picture">
               <Form.Label>Picture</Form.Label>
-              <Form.Control name="picture" type="file" onChange={handleInput} />
+              <Form.Control
+                required
+                name="picture"
+                type="file"
+                accept="image/*"
+                onChange={handleInput}
+              />
             </Form.Group>
             <Form.Group id="bio">
               <Form.Label>Bio</Form.Label>
               <Form.Control
+                required
                 name="bio"
                 as="textarea"
                 rows={3}

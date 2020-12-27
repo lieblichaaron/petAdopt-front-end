@@ -1,4 +1,5 @@
 const userBaseUrl = "http://localhost:5000/users";
+const petsBaseUrl = "http://localhost:5000/pets";
 
 export const signup = async (formInfo) => {
   try {
@@ -43,5 +44,21 @@ export const loginWithToken = async () => {
     return data;
   } catch (e) {
     return false;
+  }
+};
+
+export const addPet = async (formData) => {
+  try {
+    const response = await fetch(`${petsBaseUrl}/pet`, {
+      method: "POST",
+      // credentials: "include",
+      body: formData,
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (e) {
+    console.log(e);
+    return e;
   }
 };
