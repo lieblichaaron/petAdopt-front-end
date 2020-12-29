@@ -49,15 +49,14 @@ export const loginWithToken = async () => {
 
 export const addPet = async (formData) => {
   try {
-    const response = await fetch(`${petsBaseUrl}/pet`, {
+    const response = await fetch(`${petsBaseUrl}/`, {
       method: "POST",
-      // credentials: "include",
+      credentials: "include",
       body: formData,
     });
     const data = await response.json();
     return data;
   } catch (e) {
-    console.log(e);
     return e;
   }
 };

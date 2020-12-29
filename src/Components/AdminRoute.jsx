@@ -1,12 +1,13 @@
 import { Route, Redirect } from "react-router-dom";
-import { auth } from "../MockData/Auth";
-
+import { useContext } from "react";
+import { UserContext } from "../Context";
 const AdminRoute = ({ children, ...rest }) => {
+  const user = useContext(UserContext);
   return (
     <Route
       {...rest}
       render={() => {
-        return auth.isAdmin == true ? children : <Redirect to="/" />;
+        return /*user.adminStatus ===*/ true ? children : <Redirect to="/" />;
       }}
     />
   );

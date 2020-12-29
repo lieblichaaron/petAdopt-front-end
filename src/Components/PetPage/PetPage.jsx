@@ -9,6 +9,8 @@ import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { auth } from "../../MockData/Auth";
+import { Redirect } from "react-router-dom";
 const PetPage = () => {
   const pet = useContext(CurrentPetContext);
   const user = useContext(UserContext);
@@ -18,6 +20,10 @@ const PetPage = () => {
   } else {
     heart = farHeart;
   }
+  const editPet = () => {
+    /*set petToEdit to current pet*/
+    return <Redirect to="/addPet" />;
+  };
   const confirmChoice = async (status) => {
     let text;
     if (status === "return") {
@@ -158,6 +164,11 @@ const PetPage = () => {
             {user.id === pet.ownerID && (
               <Button variant="danger" onClick={() => confirmChoice("return")}>
                 Return to adoption center
+              </Button>
+            )}
+            {auth.isAdmin && (
+              <Button variant="info" onClick={editPet}>
+                Edit pet information
               </Button>
             )}
           </div>

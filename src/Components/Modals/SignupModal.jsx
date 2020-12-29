@@ -33,9 +33,11 @@ const SignupModal = (props) => {
       }, 5000);
     } else {
       const currentUserId = await signup(formInfo);
-      await props.setCurrentUserId(currentUserId);
-      if (currentUserId) {
+      if (typeof currentUserId !== "object") {
+        await props.setCurrentUserId(currentUserId);
         setUserLoggedIn(true);
+      } else if (currentUserId) {
+        setError(currentUserId.error);
       } else {
         setError("Server is down, please try again later");
       }

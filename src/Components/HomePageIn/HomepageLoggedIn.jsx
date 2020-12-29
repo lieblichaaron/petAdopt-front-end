@@ -16,7 +16,6 @@ const HomepageLoggedIn = (props) => {
           props.setCurrentUserId(id);
         } else {
           Cookie.remove("jwt");
-          return <Redirect to="/" />;
         }
       });
     }

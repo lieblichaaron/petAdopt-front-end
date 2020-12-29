@@ -1,6 +1,13 @@
 import { useState } from "react";
 import CustomNavbar from "../Navbar/Navbar";
-import { Form, Button, Card, DropdownButton, Dropdown } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Card,
+  DropdownButton,
+  Dropdown,
+  Alert,
+} from "react-bootstrap";
 import styles from "./AddPet.module.css";
 import { addPet } from "../../lib/serverFuncs";
 
@@ -18,6 +25,7 @@ const AddPet = () => {
     breedOfAnimal: "",
   };
   const [formInfo, setFormInfo] = useState(formFields);
+  const [alert, setAlert] = useState(false);
   const [picture, setPicture] = useState(null);
   const [adoptionStatus, setAdoptionStatus] = useState("Select");
   const handleInput = (e) => {
@@ -49,10 +57,11 @@ const AddPet = () => {
     let formData = new FormData();
     formData.append("data", JSON.stringify(formInfo));
     formData.append("picture", picture);
-    const data = await addPet(formData);
-    if (data) {
-      e.target.reset();
-      setAdoptionStatus("Select");
+    const response = await addPet(formData);
+    if (response === "Pet successfully added") {
+      setAlert(response);
+    } else {
+      console.log(response);
     }
   };
   return (
@@ -170,8 +179,13 @@ const AddPet = () => {
                 onChange={handleInput}
               />
             </Form.Group>
+            {alert && (
+              <Alert className="text-center" variant="success">
+                {alert}
+              </Alert>
+            )}
             <Button type="Submit" className="w-100">
-              Save changes
+              Add Pet
             </Button>
           </Form>
         </Card.Body>
