@@ -1,4 +1,3 @@
-import { Redirect } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../Context";
 import styles from "./HomepageLoggedIn.module.css";
@@ -8,12 +7,12 @@ import About from "../About/About";
 import { loginWithToken } from "../../lib/serverFuncs";
 import Cookie from "js-cookie";
 const HomepageLoggedIn = (props) => {
-  const id = useContext(UserContext);
+  const user = useContext(UserContext);
   useEffect(() => {
-    if (!id) {
-      loginWithToken().then((id) => {
-        if (id) {
-          props.setCurrentUserId(id);
+    if (!user) {
+      loginWithToken().then((user) => {
+        if (user) {
+          props.setCurrentUserId(user);
         } else {
           Cookie.remove("jwt");
         }
@@ -25,7 +24,7 @@ const HomepageLoggedIn = (props) => {
       <div className={styles["page-container"]}>
         <CustomNavbar />
         <div className={styles["main-container"]}>
-          <h1>Welcome back, {id}!</h1>
+          <h1>Welcome back, {user.fullName}!</h1>
           <h4>
             Check out your furry friends on your
             <Link className={styles["welcome-link"]} to="/myPets">

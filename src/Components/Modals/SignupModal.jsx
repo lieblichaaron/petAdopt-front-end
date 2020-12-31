@@ -32,12 +32,12 @@ const SignupModal = (props) => {
         setError("");
       }, 5000);
     } else {
-      const currentUserId = await signup(formInfo);
-      if (typeof currentUserId !== "object") {
-        await props.setCurrentUserId(currentUserId);
+      const currentUser = await signup(formInfo);
+      if ("_id" in currentUser) {
+        await props.setCurrentUserId(currentUser);
         setUserLoggedIn(true);
-      } else if (currentUserId) {
-        setError(currentUserId.error);
+      } else if ("error" in currentUser) {
+        setError(currentUser.error);
       } else {
         setError("Server is down, please try again later");
       }

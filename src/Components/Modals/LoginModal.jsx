@@ -20,12 +20,12 @@ const LoginModal = (props) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const currentUserId = await login(formInfo);
-    if (typeof currentUserId !== "object") {
-      await props.setCurrentUserId(currentUserId);
+    const currentUser = await login(formInfo);
+    if ("_id" in currentUser) {
+      await props.setCurrentUserId(currentUser);
       setUserLoggedIn(true);
-    } else if (currentUserId) {
-      setError(currentUserId.error);
+    } else if ("error" in currentUser) {
+      setError(currentUser.error);
     } else {
       setError("Server is down, please try again later");
     }

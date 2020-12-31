@@ -1,7 +1,7 @@
 .homepage-container {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 50px);
+  height: 600px;
 }
 .welcome-container {
   height: 100%;
