@@ -1,11 +1,25 @@
+import { Redirect } from "react-router-dom";
 import styles from "./ProfileSettings.module.css";
 import { Form, Button, Card } from "react-bootstrap";
 import petPic from "../../images/picForProfileSettings.jpg";
 import CustomNavbar from "../Navbar/Navbar";
+import { getUsersPets } from "../../lib/serverFuncs";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../../Context";
 const ProfileSettings = () => {
+  const user = useContext(UserContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  useEffect(() => {
+    if (user) {
+      getUsersPets(user._id).then((res) => {});
+    }
+  }, []);
+  if (!user) {
+    return <Redirect to="/home" />;
+  }
   return (
     <div>
       <CustomNavbar />

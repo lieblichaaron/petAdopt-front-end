@@ -14,6 +14,12 @@ const SignupModal = (props) => {
   const [formInfo, setFormInfo] = useState(formFields);
   const [error, setError] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const displayError = (errorMsg) => {
+    setError(errorMsg);
+    setTimeout(() => {
+      setError("");
+    }, 5000);
+  };
   const handleInput = (e) => {
     if (e.target.name === "password confirmation") {
       setPasswordConfirmation(e.target.value);
@@ -27,19 +33,18 @@ const SignupModal = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (passwordConfirmation !== formInfo.password) {
-      setError("Passwords do not match");
-      return setTimeout(() => {
-        setError("");
-      }, 5000);
+      displayError("Passwords do not match");
     } else {
       const currentUser = await signup(formInfo);
-      if ("_id" in currentUser) {
-        await props.setCurrentUserId(currentUser);
-        setUserLoggedIn(true);
-      } else if ("error" in currentUser) {
-        setError(currentUser.error);
+      if (currentUser) {
+        if ("_id" in currentUser) {
+          await props.setCurrentUser(currentUser);
+          setUserLoggedIn(true);
+        } else if ("error" in currentUser) {
+          displayError(currentUser.error);
+        }
       } else {
-        setError("Server is down, please try again later");
+        displayError("Server is down, please try again later");
       }
     }
   };
@@ -60,7 +65,6 @@ const SignupModal = (props) => {
           Create an account
         </Modal.Title>
       </Modal.Header>
-      {error && <Alert variant="danger">{error}</Alert>}
       <Modal.Body>
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group id="name">
@@ -111,6 +115,7 @@ const SignupModal = (props) => {
               required
             />
           </Form.Group>
+          {error && <Alert variant="danger">{error}</Alert>}
           <Button type="Submit" className="w-100">
             Create an account!
           </Button>

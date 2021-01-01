@@ -1,7 +1,6 @@
 import { Button } from "react-bootstrap";
 import styles from "./HomepageLoggedOut.module.css";
 import Logo from "../../images/favicon-32x32.png";
-import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import SignupModal from "../Modals/SignupModal";
 import LoginModal from "../Modals/LoginModal";
@@ -18,12 +17,12 @@ const HomepageLoggedOut = (props) => {
   return (
     <div className={styles["main-container"]}>
       <SignupModal
-        setCurrentUserId={props.setCurrentUserId}
+        setCurrentUser={props.setCurrentUser}
         modalState={signupModalState}
         closeModal={changeSignupModalState}
       />
       <LoginModal
-        setCurrentUserId={props.setCurrentUserId}
+        setCurrentUser={props.setCurrentUser}
         modalState={loginModalState}
         closeModal={changeLoginModalState}
       />
@@ -35,7 +34,7 @@ const HomepageLoggedOut = (props) => {
         <div className={styles["signup-container"]}>
           <div className={styles["inner-signup-container"]}>
             <img src={Logo} alt="logo" />
-            <h2 className="mb-3 mt-3">Adopt a pet today!</h2>
+            <h1 className="mb-3 mt-3">Adopt a pet today!</h1>
             <Button
               variant="info"
               className={styles["signup-btn"]}
@@ -50,12 +49,6 @@ const HomepageLoggedOut = (props) => {
             >
               Log in
             </Button>
-            <h1 className="pt-5">
-              Come to see some cute pets? Check them out{" "}
-              <Link className="mr-3" to="/petSearch">
-                here
-              </Link>
-            </h1>
           </div>
         </div>
       </div>

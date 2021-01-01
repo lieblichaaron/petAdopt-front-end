@@ -1,9 +1,9 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import { useState } from "react";
 import Logo from "../../images/favicon-32x32.png";
-import { auth } from "../../MockData/Auth";
 import { Redirect } from "react-router-dom";
 import { login } from "../../lib/serverFuncs";
+
 const LoginModal = (props) => {
   const [error, setError] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -12,6 +12,12 @@ const LoginModal = (props) => {
     password: "",
   };
   const [formInfo, setFormInfo] = useState(formFields);
+  const displayError = (errorMsg) => {
+    setError(errorMsg);
+    setTimeout(() => {
+      setError("");
+    }, 5000);
+  };
   const handleInput = (e) => {
     setFormInfo({
       ...formInfo,
@@ -21,13 +27,15 @@ const LoginModal = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const currentUser = await login(formInfo);
-    if ("_id" in currentUser) {
-      await props.setCurrentUserId(currentUser);
-      setUserLoggedIn(true);
-    } else if ("error" in currentUser) {
-      setError(currentUser.error);
+    if (currentUser) {
+      if ("_id" in currentUser) {
+        await props.setCurrentUser(currentUser);
+        setUserLoggedIn(true);
+      } else if ("error" in currentUser) {
+        displayError(currentUser.error);
+      }
     } else {
-      setError("Server is down, please try again later");
+      displayError("Server is down, please try again later");
     }
   };
   if (userLoggedIn) {
@@ -45,7 +53,6 @@ const LoginModal = (props) => {
         </div>
         <Modal.Title className="text-center w-100">Log in</Modal.Title>
       </Modal.Header>
-      {error && <Alert variant="danger">{error}</Alert>}
       <Modal.Body>
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group id="email">
@@ -66,6 +73,7 @@ const LoginModal = (props) => {
               required
             />
           </Form.Group>
+          {error && <Alert variant="danger">{error}</Alert>}
           <Button type="Submit" className="w-100">
             Log in
           </Button>

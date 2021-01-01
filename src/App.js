@@ -32,13 +32,13 @@ function App() {
   users.forEach((user) => {
     usersObj[user.id] = user;
   });
-  const [currentUserId, setCurrentUserId] = useState();
+  const [currentUser, setCurrentUser] = useState();
   const [pet, setPet] = useState(petsObj[1]);
   const changePetState = (petId) => {
     setPet(petsObj[petId]);
   };
   return (
-    <UserContext.Provider value={currentUserId}>
+    <UserContext.Provider value={currentUser}>
       <CurrentPetContext.Provider value={pet}>
         <PetsContext.Provider value={pets}>
           <Router>
@@ -47,11 +47,11 @@ function App() {
                 {cookie ? (
                   <Redirect to="/home" />
                 ) : (
-                  <HomepageLoggedOut setCurrentUserId={setCurrentUserId} />
+                  <HomepageLoggedOut setCurrentUser={setCurrentUser} />
                 )}
               </Route>
               <PrivateRoute path="/home">
-                <HomepageLoggedIn setCurrentUserId={setCurrentUserId} />
+                <HomepageLoggedIn setCurrentUser={setCurrentUser} />
               </PrivateRoute>
               <Route path="/petSearch">
                 <PetSearch switchPet={changePetState} />

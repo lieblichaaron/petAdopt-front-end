@@ -60,3 +60,14 @@ export const addPet = async (formData) => {
     return e;
   }
 };
+export const getUsersPets = async (userId) => {
+  try {
+    const response = await fetch(`${userBaseUrl}/${userId}/pets`);
+    const data = response.json();
+    console.log(data);
+    return data;
+  } catch {
+    console.log("failed");
+    return false;
+  }
+};
