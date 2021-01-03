@@ -1,22 +1,29 @@
 import { Col } from "react-bootstrap";
 import styles from "./PetCard.module.css";
-import Picture from "../../images/picForProfileSettings.jpg";
 import { useHistory } from "react-router-dom";
+import { baseUrl } from "../../lib/serverFuncs";
 
 const PetCard = (props) => {
   const history = useHistory();
-  const redirectToPetPage = (id) => {
-    props.switchPet(id);
-    history.push("/petPage");
+  const redirectToPetPage = (pet) => {
+    props.setCurrentPet(pet);
+    history.push({
+      pathname: "/petPage",
+      search: `?pet=${props.pet._id}`,
+    });
   };
   return (
     <Col
       lg={props.size}
       className={styles["card-container"]}
-      onClick={() => redirectToPetPage(props.pet.id)}
+      onClick={() => redirectToPetPage(props.pet)}
     >
       <div className={styles["pic-container"]}>
-        <img src={Picture} alt="pet picture" className={styles["card-pic"]} />
+        <img
+          src={`${baseUrl}${props.pet.picture}`}
+          alt="pet picture"
+          className={styles["card-pic"]}
+        />
       </div>
       <h3>{props.pet.name}</h3>
       <h5>

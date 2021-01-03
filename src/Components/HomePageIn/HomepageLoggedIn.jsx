@@ -10,7 +10,7 @@ const HomepageLoggedIn = (props) => {
   return (
     <div>
       <div className={styles["page-container"]}>
-        {currentUser && <CustomNavbar />}
+        <CustomNavbar />
         <div className={styles["main-container"]}>
           <h1>Welcome back, {currentUser && currentUser.fullName}!</h1>
           <h4>

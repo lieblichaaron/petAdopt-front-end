@@ -1,3 +1,4 @@
+export const baseUrl = "http://localhost:5000/";
 const userBaseUrl = "http://localhost:5000/users";
 const petsBaseUrl = "http://localhost:5000/pets";
 
@@ -65,6 +66,51 @@ export const getUsersPets = async (userId) => {
   try {
     const response = await fetch(`${userBaseUrl}/${userId}/pets`, {
       credentials: "include",
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    console.log("failed");
+    return false;
+  }
+};
+
+export const changeSavedPets = async (petId) => {
+  try {
+    const response = await fetch(`${petsBaseUrl}/${petId}/save`, {
+      method: "PUT",
+      credentials: "include",
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    console.log("failed");
+    return false;
+  }
+};
+
+export const getPetById = async (petId) => {
+  try {
+    const response = await fetch(`${petsBaseUrl}/${petId}`, {
+      credentials: "include",
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    console.log("failed");
+    return false;
+  }
+};
+
+export const changeAdoptionStatus = async (petId, status) => {
+  try {
+    const response = await fetch(`${petsBaseUrl}/${petId}/adopt`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ adoptionStatus: status }),
     });
     const data = await response.json();
     return data;

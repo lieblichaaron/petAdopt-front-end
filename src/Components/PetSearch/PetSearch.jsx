@@ -56,7 +56,7 @@ const Search = (props) => {
                 <PetCard
                   key={pet.id}
                   pet={pet}
-                  switchPet={props.switchPet}
+                  setCurrentPet={props.setCurrentPet}
                   size={2}
                 />
               ))}

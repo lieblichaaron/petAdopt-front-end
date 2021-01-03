@@ -20,7 +20,7 @@ const MyPets = (props) => {
 
   return (
     <div className={styles["page-container"]}>
-      {currentUser && <CustomNavbar />}
+      <CustomNavbar />
       {currentUsersPets && (
         <Container className={styles["main-container"]}>
           {currentUsersPets.length > 0 ? (
@@ -30,7 +30,7 @@ const MyPets = (props) => {
                 <PetCard
                   key={pet._id}
                   pet={pet}
-                  switchPet={props.switchPet}
+                  setCurrentPet={props.setCurrentPet}
                   size={5}
                 />
               ))}
