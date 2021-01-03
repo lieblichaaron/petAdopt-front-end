@@ -5,12 +5,12 @@ import Cookie from "js-cookie";
 const cookie = Cookie.getJSON("jwt");
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const user = useContext(UserContext);
+  const currentUser = useContext(UserContext);
   return (
     <Route
       {...rest}
       render={() => {
-        return cookie || user ? children : <Redirect to="/" />;
+        return cookie || currentUser ? children : <Redirect to="/" />;
       }}
     />
   );

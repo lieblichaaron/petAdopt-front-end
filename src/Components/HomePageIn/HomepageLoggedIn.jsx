@@ -1,29 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../Context";
 import styles from "./HomepageLoggedIn.module.css";
 import { Link } from "react-router-dom";
 import CustomNavbar from "../Navbar/Navbar";
 import About from "../About/About";
-import { loginWithToken } from "../../lib/serverFuncs";
-import Cookie from "js-cookie";
-const HomepageLoggedIn = (props) => {
-  const user = useContext(UserContext);
-  if (!user) {
-    loginWithToken().then((userFromToken) => {
-      if (userFromToken) {
-        props.setCurrentUser(userFromToken);
-      } else {
-        Cookie.remove("jwt");
-      }
-    });
-  }
 
+const HomepageLoggedIn = (props) => {
+  const currentUser = useContext(UserContext);
   return (
     <div>
       <div className={styles["page-container"]}>
-        {user && <CustomNavbar />}
+        {currentUser && <CustomNavbar />}
         <div className={styles["main-container"]}>
-          <h1>Welcome back, {user && user.fullName}!</h1>
+          <h1>Welcome back, {currentUser && currentUser.fullName}!</h1>
           <h4>
             Check out your furry friends on your
             <Link className={styles["welcome-link"]} to="/myPets">

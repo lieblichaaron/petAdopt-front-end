@@ -60,11 +60,13 @@ export const addPet = async (formData) => {
     return e;
   }
 };
+// if you would like to use the userId contained in the cookie pass "token" to getUsersPets function
 export const getUsersPets = async (userId) => {
   try {
-    const response = await fetch(`${userBaseUrl}/${userId}/pets`);
-    const data = response.json();
-    console.log(data);
+    const response = await fetch(`${userBaseUrl}/${userId}/pets`, {
+      credentials: "include",
+    });
+    const data = await response.json();
     return data;
   } catch {
     console.log("failed");

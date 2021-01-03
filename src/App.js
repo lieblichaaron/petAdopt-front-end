@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "fontsource-roboto";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,6 +20,7 @@ import AdminRoute from "./Components/AdminRoute";
 import { UserContext, CurrentPetContext, PetsContext } from "./Context";
 import PetPage from "./Components/PetPage/PetPage";
 import AddPet from "./Components/AddPet/AddPet";
+import { loginWithToken } from "./lib/serverFuncs";
 import Cookie from "js-cookie";
 const cookie = Cookie.getJSON("jwt");
 
@@ -37,6 +38,15 @@ function App() {
   const changePetState = (petId) => {
     setPet(petsObj[petId]);
   };
+  if (!currentUser) {
+    loginWithToken().then((userFromToken) => {
+      if (userFromToken) {
+        setCurrentUser(userFromToken);
+      } else {
+        Cookie.remove("jwt");
+      }
+    });
+  }
   return (
     <UserContext.Provider value={currentUser}>
       <CurrentPetContext.Provider value={pet}>
