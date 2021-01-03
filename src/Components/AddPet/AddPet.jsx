@@ -16,6 +16,7 @@ const AddPet = () => {
     type: "",
     name: "",
     adoptionStatus: "",
+    ownerId: null,
     height: "",
     weight: "",
     color: "",
@@ -25,16 +26,28 @@ const AddPet = () => {
     breedOfAnimal: "",
   };
   const [formInfo, setFormInfo] = useState(formFields);
+  const [alertType, setAlertType] = useState("");
   const [alert, setAlert] = useState(false);
   const [picture, setPicture] = useState(null);
   const [adoptionStatus, setAdoptionStatus] = useState("Select");
+  const [petAvailable, setPetAvailable] = useState(true);
   const handleInput = (e) => {
     if (!e.target) {
       setAdoptionStatus(e);
-      setFormInfo({
-        ...formInfo,
-        adoptionStatus: e,
-      });
+      if (e !== "Looking for a new home") {
+        setPetAvailable(false);
+        setFormInfo({
+          ...formInfo,
+          adoptionStatus: e,
+        });
+      } else {
+        setFormInfo({
+          ...formInfo,
+          ownerId: null,
+          adoptionStatus: e,
+        });
+        setPetAvailable(true);
+      }
     } else if (e.target.type === "checkbox") {
       setFormInfo({
         ...formInfo,
@@ -59,9 +72,16 @@ const AddPet = () => {
     formData.append("picture", picture);
     const response = await addPet(formData);
     if (response === "Pet successfully added") {
+      setAlertType("success");
       setAlert(response);
+      e.target.reset();
+      setAdoptionStatus("select");
+      setTimeout(() => {
+        setAlert(false);
+      }, 10000);
     } else {
-      console.log(response);
+      setAlertType("danger");
+      setAlert(response);
     }
   };
   return (
@@ -105,6 +125,17 @@ const AddPet = () => {
                 </Dropdown.Item>
               </DropdownButton>
             </Form.Group>
+            {!petAvailable && (
+              <Form.Group id="owner">
+                <Form.Label>Owner ID</Form.Label>
+                <Form.Control
+                  required
+                  name="ownerId"
+                  type="text"
+                  onChange={handleInput}
+                />
+              </Form.Group>
+            )}
             <Form.Group id="height">
               <Form.Label>Height(cm)</Form.Label>
               <Form.Control
@@ -180,7 +211,7 @@ const AddPet = () => {
               />
             </Form.Group>
             {alert && (
-              <Alert className="text-center" variant="success">
+              <Alert className="text-center" variant={alertType}>
                 {alert}
               </Alert>
             )}

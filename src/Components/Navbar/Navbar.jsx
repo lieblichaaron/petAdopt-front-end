@@ -2,9 +2,11 @@ import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Logo from "../../images/favicon-32x32.png";
 import styles from "./Navbar.module.css";
-import { auth } from "../../MockData/Auth";
+import { useContext } from "react";
+import { UserContext } from "../../Context";
 
 const CustomNavbar = () => {
+  const currentUser = useContext(UserContext);
   return (
     <Navbar className={styles["navbar"]}>
       <Navbar.Brand>
@@ -24,7 +26,7 @@ const CustomNavbar = () => {
         <NavLink className={styles["header-link"]} to="/home">
           About us
         </NavLink>
-        {auth.isAdmin && (
+        {currentUser.adminStatus && (
           <NavLink className={styles["header-link"]} to="/addPet">
             Add pet
           </NavLink>
