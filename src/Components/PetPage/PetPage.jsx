@@ -26,7 +26,10 @@ const PetPage = (props) => {
   }
   const [heart, setHeart] = useState(heartOnLoad);
   const editPet = () => {
-    history.push("/addPet");
+    history.push({
+      pathname: "/addPet",
+      search: `?pet=${currentPet._id}`,
+    });
   };
   const confirmChoice = async (status) => {
     let text;

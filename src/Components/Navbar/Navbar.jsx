@@ -26,7 +26,7 @@ const CustomNavbar = () => {
         <NavLink className={styles["header-link"]} to="/home">
           About us
         </NavLink>
-        {currentUser.adminStatus && (
+        {currentUser && currentUser.adminStatus && (
           <NavLink className={styles["header-link"]} to="/addPet">
             Add pet
           </NavLink>

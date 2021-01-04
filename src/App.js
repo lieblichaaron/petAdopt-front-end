@@ -50,35 +50,40 @@ function App() {
       <CurrentPetContext.Provider value={currentPet}>
         <PetsContext.Provider value={pets}>
           <Router>
-            {currentUser && (
-              <Switch>
-                <Route exact path="/">
-                  {cookie ? (
-                    <Redirect to="/home" />
-                  ) : (
-                    <HomepageLoggedOut setCurrentUser={setCurrentUser} />
-                  )}
-                </Route>
-                <PrivateRoute path="/home">
-                  <HomepageLoggedIn setCurrentUser={setCurrentUser} />
-                </PrivateRoute>
-                <Route path="/petSearch">
-                  <PetSearch setCurrentPet={setCurrentPet} />
-                </Route>
-                <Route path="/petPage">
-                  {currentPet && <PetPage setCurrentPet={setCurrentPet} />}
-                </Route>
-                <PrivateRoute path="/myPets">
-                  <MyPets setCurrentPet={setCurrentPet} />
-                </PrivateRoute>
-                <PrivateRoute path="/profileSettings">
-                  <ProfileSettings />
-                </PrivateRoute>
-                <AdminRoute path="/addPet">
-                  <AddPet />
-                </AdminRoute>
-              </Switch>
-            )}
+            <Switch>
+              <Route exact path="/">
+                {cookie ? (
+                  <Redirect to="/home" />
+                ) : (
+                  <HomepageLoggedOut setCurrentUser={setCurrentUser} />
+                )}
+              </Route>
+              <Route path="/petSearch">
+                <PetSearch setCurrentPet={setCurrentPet} />
+              </Route>
+              {currentUser || cookie ? (
+                <div>
+                  <PrivateRoute path="/home">
+                    <HomepageLoggedIn setCurrentUser={setCurrentUser} />
+                  </PrivateRoute>
+
+                  <Route path="/petPage">
+                    {currentPet && <PetPage setCurrentPet={setCurrentPet} />}
+                  </Route>
+                  <PrivateRoute path="/myPets">
+                    <MyPets setCurrentPet={setCurrentPet} />
+                  </PrivateRoute>
+                  <PrivateRoute path="/profileSettings">
+                    <ProfileSettings />
+                  </PrivateRoute>
+                  <AdminRoute path="/addPet">
+                    <AddPet setCurrentPet={setCurrentPet} />
+                  </AdminRoute>
+                </div>
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Switch>
           </Router>
         </PetsContext.Provider>
       </CurrentPetContext.Provider>

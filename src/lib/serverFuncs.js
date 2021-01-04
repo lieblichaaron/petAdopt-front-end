@@ -119,3 +119,17 @@ export const changeAdoptionStatus = async (petId, status) => {
     return false;
   }
 };
+
+export const updatePet = async (formData, petId) => {
+  try {
+    const response = await fetch(`${petsBaseUrl}/${petId}`, {
+      method: "PUT",
+      credentials: "include",
+      body: formData,
+    });
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    return e;
+  }
+};
