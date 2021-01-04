@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import CustomNavbar from "../Navbar/Navbar";
 import { CurrentPetContext } from "../../Context";
 import {
   Form,
@@ -143,7 +142,6 @@ const AddPet = (props) => {
   };
   return (
     <div>
-      <CustomNavbar />
       <Card className={styles.card}>
         <Card.Body>
           <h1 className="w-100 text-center">Add a pet</h1>

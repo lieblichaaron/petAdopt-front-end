@@ -18,7 +18,6 @@ const MyPets = (props) => {
 
   return (
     <div className={styles["page-container"]}>
-      <CustomNavbar />
       {currentUsersPets && (
         <Container className={styles["main-container"]}>
           {currentUsersPets.length > 0 ? (

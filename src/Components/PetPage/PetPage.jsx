@@ -19,7 +19,11 @@ const PetPage = (props) => {
   const currentPet = useContext(CurrentPetContext);
   const currentUser = useContext(UserContext);
   let heartOnLoad;
-  if (currentPet && currentPet.savedBy.includes(currentUser._id)) {
+  if (
+    currentPet &&
+    currentUser &&
+    currentPet.savedBy.includes(currentUser._id)
+  ) {
     heartOnLoad = coloredHeart;
   } else {
     heartOnLoad = clearHeart;
@@ -32,6 +36,13 @@ const PetPage = (props) => {
     });
   };
   const confirmChoice = async (status) => {
+    if (!currentUser) {
+      console.log("no");
+      history.push({
+        pathname: "/",
+      });
+      return;
+    }
     let text;
     if (status === "Looking for a new home") {
       text = "Are you sure you want to retun your pet to the adoption center?";
@@ -59,6 +70,13 @@ const PetPage = (props) => {
     props.setCurrentPet(newPetInfo);
   };
   const savePet = async () => {
+    if (!currentUser) {
+      console.log("no");
+      history.push({
+        pathname: "/",
+      });
+      return;
+    }
     await changeSavedPets(currentPet._id);
     if (heart === clearHeart) {
       setHeart(coloredHeart);
@@ -68,7 +86,6 @@ const PetPage = (props) => {
   };
   return (
     <div>
-      <CustomNavbar />
       <h1 className={styles["name"]}>{currentPet.name}</h1>
       <div className={styles["main-body-container"]}>
         <div className={styles["info-container"]}>
@@ -120,23 +137,25 @@ const PetPage = (props) => {
               </div>
             )}
           </div>
+
           <div className="mt-2 text-center w-100">
             <Button variant="outline-primary" onClick={savePet}>
               <FontAwesomeIcon icon={heart} className={styles.heart} />
             </Button>
           </div>
-          <div className="mt-2 text-center w-100">
-            {currentUser._id === currentPet.ownerId && (
+
+          {currentUser && currentUser._id === currentPet.ownerId && (
+            <div className="mt-2 text-center w-100">
               <Button
                 variant="danger"
                 onClick={() => confirmChoice("Looking for a new home")}
               >
                 Return to adoption center
               </Button>
-            )}
-          </div>
+            </div>
+          )}
           <div className="mt-2 text-center w-100">
-            {currentUser.adminStatus && (
+            {currentUser && currentUser.adminStatus && (
               <Button variant="info" onClick={editPet}>
                 Edit pet information
               </Button>

@@ -1,4 +1,5 @@
 .page-container {
+  padding: 5%;
   color: #cccccc;
   height: 500px;
   background: url("../../images/picForHomepage2.jpg") no-repeat center center;
@@ -8,7 +9,6 @@
   background-size: cover;
 }
 .main-container {
-  margin: 5%;
   text-align: center;
   color: black;
 }

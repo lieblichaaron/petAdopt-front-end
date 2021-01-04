@@ -5,8 +5,12 @@ import styles from "./Navbar.module.css";
 import { useContext } from "react";
 import { UserContext } from "../../Context";
 
-const CustomNavbar = () => {
+const CustomNavbar = (props) => {
+  // clear add pet page on click
   const currentUser = useContext(UserContext);
+  const clearCurrentPet = () => {
+    props.setCurrentPet("");
+  };
   return (
     <Navbar className={styles["navbar"]}>
       <Navbar.Brand>
@@ -27,8 +31,17 @@ const CustomNavbar = () => {
           About us
         </NavLink>
         {currentUser && currentUser.adminStatus && (
-          <NavLink className={styles["header-link"]} to="/addPet">
+          <NavLink
+            className={styles["header-link"]}
+            to="/addPet"
+            onClick={clearCurrentPet}
+          >
             Add pet
+          </NavLink>
+        )}
+        {!currentUser && (
+          <NavLink className={styles["header-link"]} to="/">
+            Home
           </NavLink>
         )}
       </Nav>

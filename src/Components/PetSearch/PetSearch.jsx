@@ -52,7 +52,6 @@ const Search = (props) => {
 
   return (
     <div className={styles["page-container"]}>
-      <CustomNavbar />
       <div className={styles["search-bar-container"]}>
         {advancedSearch ? (
           <AdvancedSearchBar sendQueryParams={setSearchPets} />

@@ -22,7 +22,6 @@ const ProfileSettings = () => {
   }
   return (
     <div>
-      <CustomNavbar />
       <div className={styles["main-body-container"]}>
         <div className={styles["main-body-pic"]}>
           {/* make this background a rotating album of the users pets if they have any */}
