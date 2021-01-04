@@ -72,7 +72,7 @@ const state = {
     },
     {
       id: 4,
-      title: "90-200",
+      title: "90+",
       selected: false,
       key: "animalHeight",
     },
@@ -122,7 +122,7 @@ const state = {
     },
     {
       id: 7,
-      title: "70-100",
+      title: "70+",
       selected: false,
       key: "animalWeight",
     },

@@ -133,3 +133,18 @@ export const updatePet = async (formData, petId) => {
     return e;
   }
 };
+
+export const getPetsByParams = async (paramsObj) => {
+  let paramsString = "";
+  for (const [key, value] of Object.entries(paramsObj)) {
+    paramsString += `${key}=${value}&`;
+  }
+  try {
+    const response = await fetch(`${petsBaseUrl}?${paramsString}`);
+    const data = await response.json();
+    return data;
+  } catch {
+    console.log("failed");
+    return false;
+  }
+};

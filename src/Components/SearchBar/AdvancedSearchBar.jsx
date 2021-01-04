@@ -1,8 +1,8 @@
 import react from "react";
 import styles from "./SearchBar.module.scss";
 import { Dropdown } from "reactjs-dropdown-component";
-import { PetsContext } from "../../Context";
 import state from "./AdvancedSearchArrays";
+import { getPetsByParams } from "../../lib/serverFuncs";
 
 class AdvancedSearchBar extends react.Component {
   constructor(props) {
@@ -13,9 +13,9 @@ class AdvancedSearchBar extends react.Component {
       adoptionStatus: "Adoption status",
       height: "Height(cm)",
       weight: "Weight(kg)",
+      name: "",
     };
   }
-  static contextType = PetsContext;
   handleNameChange = (e) => {
     this.setState({
       buttonDisabled: false,
@@ -38,7 +38,7 @@ class AdvancedSearchBar extends react.Component {
       [key]: temp,
     });
   };
-  search = (e) => {
+  search = async (e) => {
     e.preventDefault();
     this.state.animalTypes.forEach((type) => {
       if (type.selected === true) {
@@ -60,22 +60,17 @@ class AdvancedSearchBar extends react.Component {
         this.specificationsObj.weight = weight.title;
       }
     });
-    const animalsToSearch = this.context.filter(
-      (pet) =>
-        (pet.type === this.specificationsObj.type ||
-          this.specificationsObj.type === "Species") &&
-        (pet.adoptionStatus === this.specificationsObj.adoptionStatus ||
-          this.specificationsObj.adoptionStatus === "Adoption status") &&
-        ((pet.height >= parseInt(this.specificationsObj.height.split("-")[0]) &&
-          pet.height <=
-            parseInt(this.specificationsObj.height.split("-")[1])) ||
-          this.specificationsObj.height === "Height(cm)") &&
-        ((pet.weight >= parseInt(this.specificationsObj.weight.split("-")[0]) &&
-          pet.weight <=
-            parseInt(this.specificationsObj.weight.split("-")[1])) ||
-          this.specificationsObj.weight === "Weight(kg)") &&
-        (pet.name === this.state.animalName || !this.state.animalName)
-    );
+    this.specificationsObj.name = this.state.animalName;
+    if (this.specificationsObj.type === "Species")
+      delete this.specificationsObj.type;
+    if (this.specificationsObj.adoptionStatus === "Adoption status")
+      delete this.specificationsObj.adoptionStatus;
+    if (this.specificationsObj.height === "Height(cm)")
+      delete this.specificationsObj.height;
+    if (this.specificationsObj.weight === "Weight(kg)")
+      delete this.specificationsObj.weight;
+    if (!this.specificationsObj.name) delete this.specificationsObj.name;
+    const animalsToSearch = await getPetsByParams(this.specificationsObj);
     this.props.setSearchPets(animalsToSearch);
   };
   render() {

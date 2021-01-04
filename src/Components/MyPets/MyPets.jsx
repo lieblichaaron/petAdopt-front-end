@@ -1,14 +1,12 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CustomNavbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
 import styles from "./MyPets.module.scss";
-import { UserContext } from "../../Context";
 import PetCard from "../PetCard/PetCard";
 import { Container, Row } from "react-bootstrap";
 import { getUsersPets } from "../../lib/serverFuncs";
 
 const MyPets = (props) => {
-  const currentUser = useContext(UserContext);
   const [currentUsersPets, setCurrentUsersPets] = useState(null);
   useEffect(() => {
     const getCurrentUsersPets = async () => {

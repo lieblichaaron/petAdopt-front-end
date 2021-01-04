@@ -8,8 +8,6 @@ import BasicSearchBar from "../SearchBar/BasicSearchBar";
 import AdvancedSearchBar from "../SearchBar/AdvancedSearchBar";
 
 const Search = (props) => {
-  //to access their saved pets
-  // const { savedPets } = useContext(UserContext);
   const [advancedSearch, setAdvancedSearch] = useState(false);
   const [searchPets, setSearchPets] = useState(null);
   const [filterOption, setFilterOption] = useState("+");
@@ -42,11 +40,17 @@ const Search = (props) => {
       <Container className={`fluid ${styles["main-container"]}`}>
         {true ? (
           <Row className={`justify-content-md-center ${styles["main-row"]}`}>
-            {searchPets ? (
+            {searchPets && searchPets.length > 0 && (
               <h1 className="text-center w-100">
                 Click on a pet to see more details!
               </h1>
-            ) : (
+            )}
+            {searchPets && searchPets.length === 0 && (
+              <h1 className="text-center w-100">
+                No pets match those specifications :(
+              </h1>
+            )}
+            {!searchPets && (
               <h1 className="text-center w-100">
                 Please add specification to search!
               </h1>
@@ -54,7 +58,7 @@ const Search = (props) => {
             {searchPets &&
               searchPets.map((pet) => (
                 <PetCard
-                  key={pet.id}
+                  key={pet._id}
                   pet={pet}
                   setCurrentPet={props.setCurrentPet}
                   size={2}

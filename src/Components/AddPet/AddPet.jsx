@@ -22,7 +22,7 @@ const AddPet = (props) => {
       type: "",
       name: "",
       adoptionStatus: "Select",
-      ownerId: null,
+      ownerId: "",
       height: "",
       weight: "",
       color: "",
@@ -108,6 +108,8 @@ const AddPet = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
+    formInfo.height = parseInt(formInfo.height);
+    formInfo.weight = parseInt(formInfo.weight);
     formData.append("data", JSON.stringify(formInfo));
     if (picture) formData.append("picture", picture);
     if (!query.get("pet")) {
