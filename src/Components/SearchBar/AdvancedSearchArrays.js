@@ -1,22 +1,22 @@
 const state = {
-  animalTypes: [
+  type: [
     {
       id: 0,
       title: "Species",
       selected: false,
-      key: "animalTypes",
+      key: "type",
     },
     {
       id: 1,
       title: "Dog",
       selected: false,
-      key: "animalTypes",
+      key: "type",
     },
     {
       id: 2,
       title: "Cat",
       selected: false,
-      key: "animalTypes",
+      key: "type",
     },
   ],
   adoptionStatus: [
@@ -45,90 +45,90 @@ const state = {
       key: "adoptionStatus",
     },
   ],
-  animalHeight: [
+  height: [
     {
       id: 0,
       title: "Height(cm)",
       selected: false,
-      key: "animalHeight",
+      key: "height",
     },
     {
       id: 1,
       title: "0-30",
       selected: false,
-      key: "animalHeight",
+      key: "height",
     },
     {
       id: 2,
       title: "30-60",
       selected: false,
-      key: "animalHeight",
+      key: "height",
     },
     {
       id: 3,
       title: "60-90",
       selected: false,
-      key: "animalHeight",
+      key: "height",
     },
     {
       id: 4,
       title: "90+",
       selected: false,
-      key: "animalHeight",
+      key: "height",
     },
   ],
-  animalWeight: [
+  weight: [
     {
       id: 0,
       title: "Weight(kg)",
       selected: false,
-      key: "animalWeight",
+      key: "weight",
     },
     {
       id: 1,
       title: "0-5",
       selected: false,
-      key: "animalWeight",
+      key: "weight",
     },
     {
       id: 2,
       title: "5-10",
       selected: false,
-      key: "animalWeight",
+      key: "weight",
     },
     {
       id: 3,
       title: "10-20",
       selected: false,
-      key: "animalWeight",
+      key: "weight",
     },
     {
       id: 4,
       title: "20-30",
       selected: false,
-      key: "animalWeight",
+      key: "weight",
     },
     {
       id: 5,
       title: "30-50",
       selected: false,
-      key: "animalWeight",
+      key: "weight",
     },
     {
       id: 6,
       title: "50-70",
       selected: false,
-      key: "animalWeight",
+      key: "weight",
     },
     {
       id: 7,
       title: "70+",
       selected: false,
-      key: "animalWeight",
+      key: "weight",
     },
   ],
   buttonDisabled: true,
-  animalName: "",
+  name: "",
 };
 
 export default state;

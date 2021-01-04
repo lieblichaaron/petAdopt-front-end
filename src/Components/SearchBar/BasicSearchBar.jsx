@@ -1,11 +1,9 @@
 import styles from "./SearchBar.module.scss";
 import { Dropdown } from "reactjs-dropdown-component";
-import { useState, useContext } from "react";
-import { PetsContext } from "../../Context";
+import { useState } from "react";
 import { getPetsByParams } from "../../lib/serverFuncs";
 
 const BasicSearchBar = (props) => {
-  const pets = useContext(PetsContext);
   let animalTypesArray = [
     {
       id: 0,
@@ -37,8 +35,7 @@ const BasicSearchBar = (props) => {
   const search = async (e) => {
     e.preventDefault();
     searchParams.type = typeToSearch;
-    const pets = await getPetsByParams(searchParams);
-    props.setSearchPets(pets);
+    props.sendQueryParams(searchParams);
   };
   return (
     <form className={styles.form} onSubmit={(e) => search(e)}>

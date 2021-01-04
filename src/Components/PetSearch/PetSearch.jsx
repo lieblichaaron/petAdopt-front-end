@@ -1,62 +1,88 @@
-import { UserContext, PetsContext } from "../../Context";
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import PetCard from "../PetCard/PetCard";
 import styles from "./PetSearch.module.scss";
 import CustomNavbar from "../Navbar/Navbar";
 import BasicSearchBar from "../SearchBar/BasicSearchBar";
 import AdvancedSearchBar from "../SearchBar/AdvancedSearchBar";
+import { getPetsByParams } from "../../lib/serverFuncs";
 
 const Search = (props) => {
+  const history = useHistory();
   const [advancedSearch, setAdvancedSearch] = useState(false);
-  const [searchPets, setSearchPets] = useState(null);
-  const [filterOption, setFilterOption] = useState("+");
-  const switchSearchBar = (e) => {
-    e.preventDefault();
-    if (filterOption === "+") {
-      setFilterOption("-");
+  const [petsToSearch, setPetsToSearch] = useState(null);
+  const [filterOption, setFilterOption] = useState("More Filters+");
+  const setSearchPets = async (queryParamsObj) => {
+    let queryString = "?";
+    for (const [key, value] of Object.entries(queryParamsObj)) {
+      queryString += `${key}=${value}&`;
+    }
+    history.push({
+      search: queryString,
+    });
+    const pets = await getPetsByParams(queryParamsObj);
+    setPetsToSearch(pets);
+  };
+  const switchSearchBar = () => {
+    if (filterOption === "More Filters+") {
+      setFilterOption("Less Filters-");
       setAdvancedSearch(true);
     } else {
-      setFilterOption("+");
+      setFilterOption("More Filters+");
       setAdvancedSearch(false);
     }
+    history.push({
+      search: "",
+    });
   };
+  useEffect(() => {
+    let search = window.location.search;
+    const getPetsfromQueryString = async () => {
+      if (!petsToSearch && search) {
+        const queryParamsObj = Object.fromEntries(
+          new URLSearchParams(search.substring(1))
+        );
+        const pets = await getPetsByParams(queryParamsObj);
+        setPetsToSearch(pets);
+      }
+    };
+    getPetsfromQueryString();
+  }, []);
+
   return (
     <div className={styles["page-container"]}>
       <CustomNavbar />
       <div className={styles["search-bar-container"]}>
         {advancedSearch ? (
-          <AdvancedSearchBar setSearchPets={setSearchPets} />
+          <AdvancedSearchBar sendQueryParams={setSearchPets} />
         ) : (
-          <BasicSearchBar setSearchPets={setSearchPets} />
+          <BasicSearchBar sendQueryParams={setSearchPets} />
         )}
-        <button
-          className={styles["filter-select"]}
-          onClick={(e) => switchSearchBar(e)}
-        >
-          More Filters<span>{filterOption}</span>
+        <button className={styles["filter-select"]} onClick={switchSearchBar}>
+          {filterOption}
         </button>
       </div>
       <Container className={`fluid ${styles["main-container"]}`}>
         {true ? (
           <Row className={`justify-content-md-center ${styles["main-row"]}`}>
-            {searchPets && searchPets.length > 0 && (
+            {petsToSearch && petsToSearch.length > 0 && (
               <h1 className="text-center w-100">
                 Click on a pet to see more details!
               </h1>
             )}
-            {searchPets && searchPets.length === 0 && (
+            {petsToSearch && petsToSearch.length === 0 && (
               <h1 className="text-center w-100">
                 No pets match those specifications :(
               </h1>
             )}
-            {!searchPets && (
+            {!petsToSearch && (
               <h1 className="text-center w-100">
                 Please add specification to search!
               </h1>
             )}
-            {searchPets &&
-              searchPets.map((pet) => (
+            {petsToSearch &&
+              petsToSearch.map((pet) => (
                 <PetCard
                   key={pet._id}
                   pet={pet}
