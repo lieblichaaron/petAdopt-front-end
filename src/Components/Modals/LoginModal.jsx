@@ -1,10 +1,14 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CurrentPetContext } from "../../Context";
 import Logo from "../../images/favicon-32x32.png";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { login } from "../../lib/serverFuncs";
 
 const LoginModal = (props) => {
+  const currentPet = useContext(CurrentPetContext);
+  const history = useHistory();
+
   const [error, setError] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const formFields = {
@@ -39,7 +43,14 @@ const LoginModal = (props) => {
     }
   };
   if (userLoggedIn) {
-    return <Redirect to="/home" />;
+    if (currentPet) {
+      history.push({
+        pathname: "/petPage",
+        search: `?pet=${currentPet._id}`,
+      });
+    } else {
+      history.push("/home");
+    }
   }
   return (
     <Modal

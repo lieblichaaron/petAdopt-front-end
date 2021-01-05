@@ -1,7 +1,8 @@
 .main-body-container {
   display: flex;
   flex-flow: row nowrap;
-  height: calc(100vh - 58.92px);
+  height: 100vh;
+  padding-top: 58.92px;
 }
 .main-body-pic {
   background-color: rgb(46, 125, 139);

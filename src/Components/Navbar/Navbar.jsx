@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { UserContext } from "../../Context";
 
 const CustomNavbar = (props) => {
-  // clear add pet page on click
   const currentUser = useContext(UserContext);
   const clearCurrentPet = () => {
     props.setCurrentPet("");

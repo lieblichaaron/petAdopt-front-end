@@ -1,3 +1,7 @@
+.page-container {
+  height: 100vh;
+  padding-top: 58.92px;
+}
 .name {
   display: block;
   background-color: rgb(46, 125, 139);

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import CustomNavbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
 import styles from "./MyPets.module.scss";
 import PetCard from "../PetCard/PetCard";

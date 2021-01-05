@@ -5,9 +5,10 @@
   -o-background-size: cover;
   background-size: cover;
   height: 100vh;
+  padding-top: 58.92px;
 }
 .main-container {
-  height: calc(100vh - 58.92px);
+  height: 100%;
   color: rgb(48, 30, 56);
   padding: 3% 0 2% 0;
   -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);

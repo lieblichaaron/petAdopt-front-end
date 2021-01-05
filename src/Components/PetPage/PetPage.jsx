@@ -85,7 +85,7 @@ const PetPage = (props) => {
     }
   };
   return (
-    <div>
+    <div className={styles["page-container"]}>
       <h1 className={styles["name"]}>{currentPet.name}</h1>
       <div className={styles["main-body-container"]}>
         <div className={styles["info-container"]}>

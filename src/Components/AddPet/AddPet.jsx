@@ -9,12 +9,14 @@ import {
   Alert,
 } from "react-bootstrap";
 import styles from "./AddPet.module.css";
+import { useHistory } from "react-router-dom";
 import { addPet, updatePet } from "../../lib/serverFuncs";
 
 const AddPet = (props) => {
   const search = window.location.search;
   const query = new URLSearchParams(search);
   let currentPet = useContext(CurrentPetContext);
+  const history = useHistory();
 
   if (!query.get("pet")) {
     currentPet = {
@@ -68,6 +70,13 @@ const AddPet = (props) => {
   const [petAvailable, setPetAvailable] = useState(
     currentPet.ownerId ? false : true
   );
+
+  const resetForm = () => {
+    history.push({
+      search: "",
+    });
+    window.location.reload();
+  };
   const handleInput = (e, stateChange) => {
     if (!e.target) {
       setAdoptionStatus(e);
@@ -116,8 +125,6 @@ const AddPet = (props) => {
       if (response === "Pet successfully added") {
         setAlertType("success");
         setAlert(response);
-        e.target.reset();
-        setAdoptionStatus("select");
         setTimeout(() => {
           setAlert(false);
         }, 10000);
@@ -141,10 +148,13 @@ const AddPet = (props) => {
     }
   };
   return (
-    <div>
+    <div className={styles.container}>
       <Card className={styles.card}>
         <Card.Body>
           <h1 className="w-100 text-center">Add a pet</h1>
+          <div className="w-100 text-center">
+            <button onClick={resetForm}>Reset form</button>
+          </div>
           <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group id="type">
               <Form.Label>Type</Form.Label>

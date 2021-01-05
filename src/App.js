@@ -29,22 +29,22 @@ function App() {
   let search = window.location.search;
   let query = new URLSearchParams(search);
   useEffect(() => {
-    if (!currentUser && cookie) {
-      loginWithToken().then((userFromToken) => {
+    const getUserfromToken = async () => {
+      if (!currentUser && cookie) {
+        const userFromToken = await loginWithToken();
         if (userFromToken) {
           setCurrentUser(userFromToken);
+          if (!currentPet && query.get("pet")) {
+            getPetById(query.get("pet")).then((pet) => {
+              setCurrentPet(pet);
+            });
+          }
         } else {
           Cookie.remove("jwt");
         }
-      });
-    }
-
-    if (!currentPet && currentUser && query.get("pet")) {
-      console.log("now");
-      getPetById(query.get("pet")).then((pet) => {
-        setCurrentPet(pet);
-      });
-    }
+      }
+    };
+    getUserfromToken();
   }, []);
   return (
     <UserContext.Provider value={currentUser}>
@@ -62,8 +62,6 @@ function App() {
             <Route path="/petSearch">
               <PetSearch setCurrentPet={setCurrentPet} />
             </Route>
-            {/* {currentUser || cookie ? (
-                <div> */}
             <PrivateRoute path="/home">
               <HomepageLoggedIn setCurrentUser={setCurrentUser} />
             </PrivateRoute>
@@ -77,13 +75,11 @@ function App() {
             <PrivateRoute path="/profileSettings">
               <ProfileSettings />
             </PrivateRoute>
-            <AdminRoute path="/addPet">
-              <AddPet setCurrentPet={setCurrentPet} />
-            </AdminRoute>
-            {/* </div>
-              ) : (
-                <Redirect to="/" />
-              )} */}
+            {currentUser && (
+              <AdminRoute path="/addPet">
+                <AddPet setCurrentPet={setCurrentPet} />
+              </AdminRoute>
+            )}
           </Switch>
         </Router>
       </CurrentPetContext.Provider>

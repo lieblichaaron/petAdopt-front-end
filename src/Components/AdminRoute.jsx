@@ -10,7 +10,7 @@ const AdminRoute = ({ children, ...rest }) => {
         return currentUser && currentUser.adminStatus === true ? (
           children
         ) : (
-          <Redirect to="/" />
+          <Redirect to="/home" />
         );
       }}
     />

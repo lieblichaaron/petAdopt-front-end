@@ -1,5 +1,7 @@
 .navbar {
   background-color: rgb(46, 125, 139, 0.8);
+  position: absolute;
+  width: 100%;
 }
 .header-link {
   color: #cccccc;

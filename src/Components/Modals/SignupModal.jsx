@@ -1,9 +1,13 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import Logo from "../../images/favicon-32x32.png";
-import { Redirect } from "react-router-dom";
-import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { CurrentPetContext } from "../../Context";
+import { useState, useContext } from "react";
 import { signup } from "../../lib/serverFuncs";
 const SignupModal = (props) => {
+  const currentPet = useContext(CurrentPetContext);
+  const history = useHistory();
+
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const formFields = {
     fullName: "",
@@ -49,7 +53,14 @@ const SignupModal = (props) => {
     }
   };
   if (userLoggedIn) {
-    return <Redirect to="/home" />;
+    if (currentPet) {
+      history.push({
+        pathname: "/petPage",
+        search: `?pet=${currentPet._id}`,
+      });
+    } else {
+      history.push("/home");
+    }
   }
   return (
     <Modal

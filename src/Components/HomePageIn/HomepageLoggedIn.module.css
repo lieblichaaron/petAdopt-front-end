@@ -1,7 +1,9 @@
 .page-container {
-  padding: 5%;
+  height: 100vh;
+  padding-top: 58.92px;
+
   color: #cccccc;
-  height: 500px;
+
   background: url("../../images/picForHomepage2.jpg") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -9,6 +11,8 @@
   background-size: cover;
 }
 .main-container {
+  padding: 5%;
+  height: 500px;
   text-align: center;
   color: black;
 }
