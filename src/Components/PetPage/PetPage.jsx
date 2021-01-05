@@ -1,4 +1,3 @@
-import CustomNavbar from "../Navbar/Navbar";
 import { useContext, useState } from "react";
 import { CurrentPetContext, UserContext } from "../../Context";
 import styles from "./PetPage.module.css";

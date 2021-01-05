@@ -21,7 +21,7 @@ const PetCard = (props) => {
       <div className={styles["pic-container"]}>
         <img
           src={`${baseUrl}${props.pet.picture}`}
-          alt="pet picture"
+          alt="pet"
           className={styles["card-pic"]}
         />
       </div>

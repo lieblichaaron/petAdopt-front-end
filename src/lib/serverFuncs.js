@@ -102,6 +102,19 @@ export const getPetById = async (petId) => {
   }
 };
 
+export const getAllUsers = async () => {
+  try {
+    const response = await fetch(`${userBaseUrl}/`, {
+      credentials: "include",
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    console.log("failed");
+    return false;
+  }
+};
+
 export const changeAdoptionStatus = async (petId, status) => {
   try {
     const response = await fetch(`${petsBaseUrl}/${petId}/adopt`, {
@@ -146,5 +159,22 @@ export const getPetsByParams = async (paramsObj) => {
   } catch {
     console.log("failed");
     return false;
+  }
+};
+
+export const updateUser = async (userInfo, userId) => {
+  try {
+    const response = await fetch(`${userBaseUrl}/${userId}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    return e;
   }
 };

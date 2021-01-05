@@ -1,7 +1,6 @@
 import styles from "./SearchBar.module.scss";
 import { Dropdown } from "reactjs-dropdown-component";
 import { useState } from "react";
-import { getPetsByParams } from "../../lib/serverFuncs";
 
 const BasicSearchBar = (props) => {
   let animalTypesArray = [

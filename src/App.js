@@ -21,11 +21,13 @@ import AddPet from "./Components/AddPet/AddPet";
 import { loginWithToken, getPetById } from "./lib/serverFuncs";
 import Cookie from "js-cookie";
 import CustomNavbar from "./Components/Navbar/Navbar";
+import Dashboard from "./Components/Dashboard/Dashboard";
 const cookie = Cookie.getJSON("jwt");
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
   const [currentPet, setCurrentPet] = useState();
+  const [setupFinished, setSetupFinished] = useState(false);
   let search = window.location.search;
   let query = new URLSearchParams(search);
   useEffect(() => {
@@ -37,10 +39,14 @@ function App() {
           if (!currentPet && query.get("pet")) {
             getPetById(query.get("pet")).then((pet) => {
               setCurrentPet(pet);
+              setSetupFinished(true);
             });
+          } else {
+            setSetupFinished(true);
           }
         } else {
           Cookie.remove("jwt");
+          setSetupFinished(true);
         }
       }
     };
@@ -49,39 +55,48 @@ function App() {
   return (
     <UserContext.Provider value={currentUser}>
       <CurrentPetContext.Provider value={currentPet}>
-        <Router>
-          <CustomNavbar setCurrentPet={setCurrentPet} />
-          <Switch>
-            <Route exact path="/">
-              {cookie ? (
-                <Redirect to="/home" />
-              ) : (
-                <HomepageLoggedOut setCurrentUser={setCurrentUser} />
-              )}
-            </Route>
-            <Route path="/petSearch">
-              <PetSearch setCurrentPet={setCurrentPet} />
-            </Route>
-            <PrivateRoute path="/home">
-              <HomepageLoggedIn setCurrentUser={setCurrentUser} />
-            </PrivateRoute>
+        {setupFinished && (
+          <Router>
+            <CustomNavbar setCurrentPet={setCurrentPet} />
+            <Switch>
+              <Route exact path="/">
+                {cookie ? (
+                  <Redirect to="/home" />
+                ) : (
+                  <HomepageLoggedOut setCurrentUser={setCurrentUser} />
+                )}
+              </Route>
+              <Route path="/petSearch">
+                <PetSearch setCurrentPet={setCurrentPet} />
+              </Route>
+              <PrivateRoute path="/home">
+                <HomepageLoggedIn setCurrentUser={setCurrentUser} />
+              </PrivateRoute>
 
-            <Route path="/petPage">
-              {currentPet && <PetPage setCurrentPet={setCurrentPet} />}
-            </Route>
-            <PrivateRoute path="/myPets">
-              <MyPets setCurrentPet={setCurrentPet} />
-            </PrivateRoute>
-            <PrivateRoute path="/profileSettings">
-              <ProfileSettings />
-            </PrivateRoute>
-            {currentUser && (
-              <AdminRoute path="/addPet">
-                <AddPet setCurrentPet={setCurrentPet} />
-              </AdminRoute>
-            )}
-          </Switch>
-        </Router>
+              <Route path="/petPage">
+                {currentPet && <PetPage setCurrentPet={setCurrentPet} />}
+              </Route>
+              <PrivateRoute path="/myPets">
+                <MyPets setCurrentPet={setCurrentPet} />
+              </PrivateRoute>
+              {currentUser && (
+                <PrivateRoute path="/profileSettings">
+                  <ProfileSettings setCurrentUser={setCurrentUser} />
+                </PrivateRoute>
+              )}
+              {currentUser && (
+                <AdminRoute path="/addPet">
+                  <AddPet setCurrentPet={setCurrentPet} />
+                </AdminRoute>
+              )}
+              {currentUser && (
+                <AdminRoute path="/dashboard">
+                  <Dashboard />
+                </AdminRoute>
+              )}
+            </Switch>
+          </Router>
+        )}
       </CurrentPetContext.Provider>
     </UserContext.Provider>
   );

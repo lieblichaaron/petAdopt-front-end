@@ -3,7 +3,6 @@ import { Container, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import PetCard from "../PetCard/PetCard";
 import styles from "./PetSearch.module.scss";
-import CustomNavbar from "../Navbar/Navbar";
 import BasicSearchBar from "../SearchBar/BasicSearchBar";
 import AdvancedSearchBar from "../SearchBar/AdvancedSearchBar";
 import { getPetsByParams } from "../../lib/serverFuncs";

@@ -30,13 +30,18 @@ const CustomNavbar = (props) => {
           About us
         </NavLink>
         {currentUser && currentUser.adminStatus && (
-          <NavLink
-            className={styles["header-link"]}
-            to="/addPet"
-            onClick={clearCurrentPet}
-          >
-            Add pet
-          </NavLink>
+          <div>
+            <NavLink
+              className={styles["header-link"]}
+              to="/addPet"
+              onClick={clearCurrentPet}
+            >
+              Add pet
+            </NavLink>
+            <NavLink className={styles["header-link"]} to="/dashboard">
+              Dashboard
+            </NavLink>
+          </div>
         )}
         {!currentUser && (
           <NavLink className={styles["header-link"]} to="/">
