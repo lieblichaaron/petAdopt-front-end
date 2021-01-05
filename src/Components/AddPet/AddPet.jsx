@@ -80,7 +80,7 @@ const AddPet = (props) => {
   const handleInput = (e, stateChange) => {
     if (!e.target) {
       setAdoptionStatus(e);
-      if (e !== "Looking for a new home") {
+      if (e !== "Available") {
         setPetAvailable(false);
         setFormInfo({
           ...formInfo,
@@ -187,9 +187,7 @@ const AddPet = (props) => {
               >
                 <Dropdown.Item eventKey="Adopted">Adopted</Dropdown.Item>
                 <Dropdown.Item eventKey="Fostered">Fostered</Dropdown.Item>
-                <Dropdown.Item eventKey="Looking for a new home">
-                  Looking for a new home
-                </Dropdown.Item>
+                <Dropdown.Item eventKey="Available">Available</Dropdown.Item>
               </DropdownButton>
             </Form.Group>
             {!petAvailable && (

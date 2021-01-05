@@ -43,7 +43,7 @@ const PetPage = (props) => {
       return;
     }
     let text;
-    if (status === "Looking for a new home") {
+    if (status === "Available") {
       text = "Are you sure you want to retun your pet to the adoption center?";
     } else if (status === "Adopted") {
       text = "Are you sure you want to adopt this pet?";
@@ -147,7 +147,7 @@ const PetPage = (props) => {
             <div className="mt-2 text-center w-100">
               <Button
                 variant="danger"
-                onClick={() => confirmChoice("Looking for a new home")}
+                onClick={() => confirmChoice("Available")}
               >
                 Return to adoption center
               </Button>

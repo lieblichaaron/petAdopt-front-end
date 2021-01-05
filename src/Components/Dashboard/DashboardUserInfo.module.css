@@ -1,0 +1,7 @@
+.user-info-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.user-pets {
+  padding-left: 3rem;
+}

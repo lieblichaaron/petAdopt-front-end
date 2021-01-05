@@ -1,0 +1,42 @@
+.page-container {
+  height: 100vh;
+  padding: 100px;
+}
+.search-bar {
+  padding: 1rem;
+}
+.search-label {
+  display: inline-block;
+  line-height: 2rem;
+  margin: 0 1rem;
+  height: 2rem;
+}
+.name-input {
+  height: 2rem;
+  border-radius: 2px;
+  border: 1px solid black;
+  color: #7da0aa;
+  font-weight: 300;
+  padding: 0 1rem;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #7da0aa;
+    opacity: 1; /* Firefox */
+    font-weight: 300;
+  }
+
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #7da0aa;
+    font-weight: 300;
+  }
+
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #7da0aa;
+    font-weight: 300;
+  }
+}

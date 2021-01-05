@@ -40,7 +40,7 @@ const state = {
     },
     {
       id: 3,
-      title: "Looking for a new home",
+      title: "Available",
       selected: false,
       key: "adoptionStatus",
     },
