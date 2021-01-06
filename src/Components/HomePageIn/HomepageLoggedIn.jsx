@@ -10,7 +10,9 @@ const HomepageLoggedIn = () => {
   return (
     <div className={styles["page-container"]}>
       <div className={styles["main-container"]}>
-        <h1>Welcome back, {currentUser && currentUser.fullName}!</h1>
+        <h1 className={styles["welcome-header"]}>
+          Welcome back, {currentUser && currentUser.fullName.split(" ")[0]}!
+        </h1>
         <h4>
           Check out your furry friends on your
           <Link className={styles["welcome-link"]} to="/myPets">

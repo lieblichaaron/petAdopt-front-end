@@ -75,6 +75,19 @@ export const getUsersPets = async (userId) => {
   }
 };
 
+export const getUsersSavedPets = async (userId) => {
+  try {
+    const response = await fetch(`${userBaseUrl}/${userId}/saved`, {
+      credentials: "include",
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    console.log("failed");
+    return false;
+  }
+};
+
 export const changeSavedPets = async (petId) => {
   try {
     const response = await fetch(`${petsBaseUrl}/${petId}/save`, {

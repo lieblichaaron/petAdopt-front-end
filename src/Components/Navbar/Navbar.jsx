@@ -45,7 +45,7 @@ const CustomNavbar = () => {
     });
   };
   const logOut = async () => {
-    Cookie.remove("jwt");
+    await Cookie.remove("jwt");
     await setCurrentUser("");
     await setCurrentPet("");
     history.push("/");
@@ -56,7 +56,7 @@ const CustomNavbar = () => {
         <img src={Logo} alt="logo" />
         PetAdopt
       </Navbar.Brand>
-      <Nav className="mr-auto">
+      <Nav>
         <NavLink className={styles["header-link"]} to="/petSearch">
           Find a pet
         </NavLink>
@@ -64,11 +64,9 @@ const CustomNavbar = () => {
           My pets
         </NavLink>
         <NavLink className={styles["header-link"]} to="/profileSettings">
-          Profile settings
+          Profile
         </NavLink>
-        <NavLink className={styles["header-link"]} to="/home">
-          About us
-        </NavLink>
+
         {currentUser && currentUser.adminStatus && (
           <div>
             <NavLink
@@ -89,8 +87,13 @@ const CustomNavbar = () => {
           </NavLink>
         )}
         {currentUser && (
-          <div className={styles.logout} onClick={confirmLogOut}>
-            Log out
+          <div>
+            <NavLink className={styles["about"]} to="/home">
+              About us
+            </NavLink>
+            <div className={styles.logout} onClick={confirmLogOut}>
+              Log out
+            </div>
           </div>
         )}
       </Nav>
