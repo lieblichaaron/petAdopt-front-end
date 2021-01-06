@@ -53,13 +53,4 @@ h1 {
 }
 .heart {
   color: red;
-  -transition-duration: 0.5s;
-  -webkit-transition-duration: 0.5s;
-  -moz-transition-duration: 0.5s;
-}
-.expand {
-  width: width * 5;
-}
-.shrink {
-  width: 20%;
 }

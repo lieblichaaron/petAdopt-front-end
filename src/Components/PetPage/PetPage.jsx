@@ -28,7 +28,6 @@ const PetPage = () => {
     heartOnLoad = clearHeart;
   }
   const [heart, setHeart] = useState(heartOnLoad);
-  const [heartStyle, setHeartStyle] = useState(styles["heart"]);
   const editPet = () => {
     history.push({
       pathname: "/addPet",
@@ -37,7 +36,6 @@ const PetPage = () => {
   };
   const confirmChoice = async (status) => {
     if (!currentUser) {
-      console.log("no");
       history.push({
         pathname: "/",
       });
@@ -69,9 +67,8 @@ const PetPage = () => {
     const newPetInfo = await changeAdoptionStatus(currentPet._id, status);
     setCurrentPet(newPetInfo);
   };
-  const savePet = async (e) => {
+  const savePet = async () => {
     if (!currentUser) {
-      console.log("no");
       history.push({
         pathname: "/",
       });
@@ -80,9 +77,7 @@ const PetPage = () => {
     await changeSavedPets(currentPet._id);
     if (heart === clearHeart) {
       setHeart(coloredHeart);
-      setHeartStyle(`${styles.heart} expand`);
     } else {
-      setHeartStyle(`${styles.heart} shrink`);
       setHeart(clearHeart);
     }
   };
@@ -142,7 +137,7 @@ const PetPage = () => {
 
           <div className="mt-2 text-center w-100">
             <Button variant="outline-primary" onClick={savePet}>
-              <FontAwesomeIcon icon={heart} className={heartStyle} />
+              <FontAwesomeIcon icon={heart} className={styles["heart"]} />
             </Button>
           </div>
 

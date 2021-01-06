@@ -15,17 +15,13 @@ import MyPets from "./Components/MyPets/MyPets";
 import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import PrivateRoute from "./Components/PrivateRoute";
 import AdminRoute from "./Components/AdminRoute";
-import {
-  UserContext,
-  CurrentPetContext,
-  SetCurrentPetContext,
-} from "./Context";
+import { UserContext, CurrentPetContext } from "./Context";
 import PetPage from "./Components/PetPage/PetPage";
 import AddPet from "./Components/AddPet/AddPet";
 import { loginWithToken, getPetById } from "./lib/serverFuncs";
-import Cookie from "js-cookie";
 import CustomNavbar from "./Components/Navbar/Navbar";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import Cookie from "js-cookie";
 const cookie = Cookie.getJSON("jwt");
 
 function App() {
@@ -66,6 +62,8 @@ function App() {
             setCurrentPet(pet);
             setSetupFinished(true);
           });
+        } else {
+          setSetupFinished(true);
         }
       }
     };
@@ -92,11 +90,9 @@ function App() {
               <PrivateRoute path="/myPets">
                 <MyPets />
               </PrivateRoute>
-              {currentUser && (
-                <PrivateRoute path="/profileSettings">
-                  <ProfileSettings />
-                </PrivateRoute>
-              )}
+              <PrivateRoute path="/profileSettings">
+                <ProfileSettings />
+              </PrivateRoute>
               {currentUser && (
                 <AdminRoute path="/addPet">
                   <AddPet />

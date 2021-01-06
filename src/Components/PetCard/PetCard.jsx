@@ -5,7 +5,7 @@ import styles from "./PetCard.module.css";
 import { useHistory } from "react-router-dom";
 import { baseUrl } from "../../lib/serverFuncs";
 
-const PetCard = () => {
+const PetCard = (props) => {
   const history = useHistory();
   const { setCurrentPet } = useContext(CurrentPetContext);
 
