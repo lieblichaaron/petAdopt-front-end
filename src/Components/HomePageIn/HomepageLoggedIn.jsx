@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import About from "../About/About";
 
 const HomepageLoggedIn = () => {
-  const currentUser = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <div className={styles["page-container"]}>

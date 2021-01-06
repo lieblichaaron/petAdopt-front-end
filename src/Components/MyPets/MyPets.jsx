@@ -5,7 +5,7 @@ import PetCard from "../PetCard/PetCard";
 import { Container, Row } from "react-bootstrap";
 import { getUsersPets } from "../../lib/serverFuncs";
 
-const MyPets = (props) => {
+const MyPets = () => {
   const [currentUsersPets, setCurrentUsersPets] = useState(null);
   useEffect(() => {
     const getCurrentUsersPets = async () => {
@@ -23,12 +23,7 @@ const MyPets = (props) => {
             <Row className={styles["main-row"]}>
               <h1 className="text-center w-100">Check out your pets here!</h1>
               {currentUsersPets.map((pet) => (
-                <PetCard
-                  key={pet._id}
-                  pet={pet}
-                  setCurrentPet={props.setCurrentPet}
-                  size={5}
-                />
+                <PetCard key={pet._id} pet={pet} size={5} />
               ))}
             </Row>
           ) : (

@@ -1,10 +1,10 @@
 import { ListGroup } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useContext } from "react";
-import { SetCurrentPetContext } from "../../Context";
+import { CurrentPetContext } from "../../Context";
 const DashboardPetListItem = (props) => {
   const history = useHistory();
-  const setCurrentPet = useContext(SetCurrentPetContext);
+  const { setCurrentPet } = useContext(CurrentPetContext);
 
   const redirectToPetPage = () => {
     setCurrentPet(props.pet);

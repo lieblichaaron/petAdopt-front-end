@@ -13,10 +13,10 @@ import {
   baseUrl,
   changeAdoptionStatus,
 } from "../../lib/serverFuncs";
-const PetPage = (props) => {
+const PetPage = () => {
   const history = useHistory();
-  const currentPet = useContext(CurrentPetContext);
-  const currentUser = useContext(UserContext);
+  const { setCurrentPet, currentPet } = useContext(CurrentPetContext);
+  const { currentUser } = useContext(UserContext);
   let heartOnLoad;
   if (
     currentPet &&
@@ -28,6 +28,7 @@ const PetPage = (props) => {
     heartOnLoad = clearHeart;
   }
   const [heart, setHeart] = useState(heartOnLoad);
+  const [heartStyle, setHeartStyle] = useState(styles["heart"]);
   const editPet = () => {
     history.push({
       pathname: "/addPet",
@@ -66,9 +67,9 @@ const PetPage = (props) => {
   };
   const changePetStatus = async (status) => {
     const newPetInfo = await changeAdoptionStatus(currentPet._id, status);
-    props.setCurrentPet(newPetInfo);
+    setCurrentPet(newPetInfo);
   };
-  const savePet = async () => {
+  const savePet = async (e) => {
     if (!currentUser) {
       console.log("no");
       history.push({
@@ -79,7 +80,9 @@ const PetPage = (props) => {
     await changeSavedPets(currentPet._id);
     if (heart === clearHeart) {
       setHeart(coloredHeart);
+      setHeartStyle(`${styles.heart} expand`);
     } else {
+      setHeartStyle(`${styles.heart} shrink`);
       setHeart(clearHeart);
     }
   };
@@ -139,7 +142,7 @@ const PetPage = (props) => {
 
           <div className="mt-2 text-center w-100">
             <Button variant="outline-primary" onClick={savePet}>
-              <FontAwesomeIcon icon={heart} className={styles.heart} />
+              <FontAwesomeIcon icon={heart} className={heartStyle} />
             </Button>
           </div>
 

@@ -1,11 +1,12 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import Logo from "../../images/favicon-32x32.png";
 import { useHistory } from "react-router-dom";
-import { CurrentPetContext } from "../../Context";
+import { CurrentPetContext, UserContext } from "../../Context";
 import { useState, useContext } from "react";
 import { signup } from "../../lib/serverFuncs";
 const SignupModal = (props) => {
-  const currentPet = useContext(CurrentPetContext);
+  const { currentPet } = useContext(CurrentPetContext);
+  const { setCurrentUser } = useContext(UserContext);
   const history = useHistory();
 
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -42,7 +43,7 @@ const SignupModal = (props) => {
       const currentUser = await signup(formInfo);
       if (currentUser) {
         if ("_id" in currentUser) {
-          await props.setCurrentUser(currentUser);
+          await setCurrentUser(currentUser);
           setUserLoggedIn(true);
         } else if ("error" in currentUser) {
           displayError(currentUser.error);

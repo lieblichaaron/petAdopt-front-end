@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import SignupModal from "../Modals/SignupModal";
 import LoginModal from "../Modals/LoginModal";
 import About from "../About/About";
-const HomepageLoggedOut = (props) => {
+const HomepageLoggedOut = () => {
   const [signupModalState, setSignupModalState] = useState(false);
   const [loginModalState, setLoginModalState] = useState(false);
   const changeSignupModalState = (condition) => {
@@ -17,12 +17,10 @@ const HomepageLoggedOut = (props) => {
   return (
     <div className={styles["main-container"]}>
       <SignupModal
-        setCurrentUser={props.setCurrentUser}
         modalState={signupModalState}
         closeModal={changeSignupModalState}
       />
       <LoginModal
-        setCurrentUser={props.setCurrentUser}
         modalState={loginModalState}
         closeModal={changeLoginModalState}
       />

@@ -5,8 +5,8 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../Context";
 import defaultPic from "../../images/picForHomepage.jpg";
 
-const ProfileSettings = (props) => {
-  const currentUser = useContext(UserContext);
+const ProfileSettings = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const formFields = {
     fullName: currentUser.fullName,
     email: currentUser.email,
@@ -55,7 +55,7 @@ const ProfileSettings = (props) => {
       delete formInfo.password;
     }
     const newUserInfo = await updateUser(formInfo, currentUser._id);
-    props.setCurrentUser(newUserInfo);
+    setCurrentUser(newUserInfo);
     setAlertType("success");
     displayMsg("Update successful");
   };

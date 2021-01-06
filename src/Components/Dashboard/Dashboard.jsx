@@ -13,14 +13,11 @@ const Dashboard = () => {
     setTempUsersList(users);
   };
   const handleInput = (e) => {
-    if (e.target.value) {
-      const newUsersList = usersList.filter((user) => {
-        return user.fullName.includes(e.target.value);
-      });
-      setTempUsersList(newUsersList);
-    } else {
-      getUsers();
-    }
+    const newUsersList = usersList.filter((user) => {
+      return user.fullName.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    setTempUsersList(newUsersList);
+    console.log("now");
   };
   useEffect(() => {
     getUsers();

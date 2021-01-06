@@ -1,12 +1,16 @@
+import { useContext } from "react";
+import { CurrentPetContext } from "../../Context";
 import { Col } from "react-bootstrap";
 import styles from "./PetCard.module.css";
 import { useHistory } from "react-router-dom";
 import { baseUrl } from "../../lib/serverFuncs";
 
-const PetCard = (props) => {
+const PetCard = () => {
   const history = useHistory();
+  const { setCurrentPet } = useContext(CurrentPetContext);
+
   const redirectToPetPage = (pet) => {
-    props.setCurrentPet(pet);
+    setCurrentPet(pet);
     history.push({
       pathname: "/petPage",
       search: `?pet=${props.pet._id}`,

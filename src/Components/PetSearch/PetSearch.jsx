@@ -7,7 +7,7 @@ import BasicSearchBar from "../SearchBar/BasicSearchBar";
 import AdvancedSearchBar from "../SearchBar/AdvancedSearchBar";
 import { getPetsByParams } from "../../lib/serverFuncs";
 
-const Search = (props) => {
+const Search = () => {
   const history = useHistory();
   const [advancedSearch, setAdvancedSearch] = useState(false);
   const [petsToSearch, setPetsToSearch] = useState(null);
@@ -81,12 +81,7 @@ const Search = (props) => {
             )}
             {petsToSearch &&
               petsToSearch.map((pet) => (
-                <PetCard
-                  key={pet._id}
-                  pet={pet}
-                  setCurrentPet={props.setCurrentPet}
-                  size={2}
-                />
+                <PetCard key={pet._id} pet={pet} size={2} />
               ))}
           </Row>
         ) : (

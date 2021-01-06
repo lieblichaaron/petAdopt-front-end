@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../images/favicon-32x32.png";
 import styles from "./Navbar.module.css";
 import { useContext } from "react";
-import { UserContext } from "../../Context";
+import { CurrentPetContext, UserContext } from "../../Context";
 
-const CustomNavbar = (props) => {
-  const currentUser = useContext(UserContext);
+const CustomNavbar = () => {
+  const { currentUser } = useContext(UserContext);
+  const { setCurrentPet } = useContext(CurrentPetContext);
   const clearCurrentPet = () => {
-    props.setCurrentPet("");
+    setCurrentPet("");
   };
   return (
     <Navbar className={styles["navbar"]}>

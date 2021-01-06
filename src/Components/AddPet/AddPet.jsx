@@ -12,10 +12,10 @@ import styles from "./AddPet.module.css";
 import { useHistory } from "react-router-dom";
 import { addPet, updatePet } from "../../lib/serverFuncs";
 
-const AddPet = (props) => {
+const AddPet = () => {
   const search = window.location.search;
   const query = new URLSearchParams(search);
-  let currentPet = useContext(CurrentPetContext);
+  let { currentPet, setCurrentPet } = useContext(CurrentPetContext);
   const history = useHistory();
 
   if (!query.get("pet")) {
@@ -134,7 +134,7 @@ const AddPet = (props) => {
       }
     } else {
       const response = await updatePet(formData, currentPet._id);
-      props.setCurrentPet(response);
+      setCurrentPet(response);
       if (response) {
         setAlertType("success");
         setAlert("Pet successfully updated");

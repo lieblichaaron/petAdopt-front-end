@@ -1,12 +1,13 @@
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import { useState, useContext } from "react";
-import { CurrentPetContext } from "../../Context";
+import { CurrentPetContext, UserContext } from "../../Context";
 import Logo from "../../images/favicon-32x32.png";
 import { useHistory } from "react-router-dom";
 import { login } from "../../lib/serverFuncs";
 
 const LoginModal = (props) => {
-  const currentPet = useContext(CurrentPetContext);
+  const { currentPet } = useContext(CurrentPetContext);
+  const { setCurrentUser } = useContext(UserContext);
   const history = useHistory();
 
   const [error, setError] = useState("");
@@ -33,7 +34,7 @@ const LoginModal = (props) => {
     const currentUser = await login(formInfo);
     if (currentUser) {
       if ("_id" in currentUser) {
-        await props.setCurrentUser(currentUser);
+        await setCurrentUser(currentUser);
         setUserLoggedIn(true);
       } else if ("error" in currentUser) {
         displayError(currentUser.error);
