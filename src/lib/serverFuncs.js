@@ -1,4 +1,3 @@
-export const baseUrl = "http://localhost:5000/";
 const userBaseUrl = "http://localhost:5000/users";
 const petsBaseUrl = "http://localhost:5000/pets";
 

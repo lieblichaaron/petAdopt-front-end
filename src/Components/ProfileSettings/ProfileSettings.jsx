@@ -1,6 +1,6 @@
 import styles from "./ProfileSettings.module.css";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { getUsersPets, baseUrl, updateUser } from "../../lib/serverFuncs";
+import { getUsersPets, updateUser } from "../../lib/serverFuncs";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../Context";
 import defaultPic from "../../images/picForHomepage.jpg";
@@ -75,11 +75,7 @@ const ProfileSettings = () => {
     <div className={styles["main-body-container"]}>
       <div className={styles["main-body-pic"]}>
         {petPicture && (
-          <img
-            className={styles.img}
-            src={`${baseUrl}${petPicture}`}
-            alt="pet"
-          />
+          <img className={styles.img} src={petPicture} alt="pet" />
         )}
         {defaultPetPicture && (
           <img className={styles.img} src={defaultPic} alt="pet" />

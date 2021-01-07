@@ -8,11 +8,7 @@ import { faHeart as coloredHeart } from "@fortawesome/free-solid-svg-icons";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useHistory } from "react-router-dom";
-import {
-  changeSavedPets,
-  baseUrl,
-  changeAdoptionStatus,
-} from "../../lib/serverFuncs";
+import { changeSavedPets, changeAdoptionStatus } from "../../lib/serverFuncs";
 const PetPage = () => {
   const history = useHistory();
   const { setCurrentPet, currentPet } = useContext(CurrentPetContext);
@@ -92,8 +88,8 @@ const PetPage = () => {
               <div>
                 Breed: {currentPet.type}|{currentPet.breedOfAnimal}
               </div>
-              <div>Height {currentPet.height}</div>
-              <div>Weigth: {currentPet.weight}</div>
+              <div>Height: {currentPet.height}</div>
+              <div>Weight: {currentPet.weight}</div>
               <div>Color: {currentPet.color}</div>
               <div>Adoption status: {currentPet.adoptionStatus}</div>
             </div>
@@ -160,11 +156,7 @@ const PetPage = () => {
           </div>
         </div>
         <div className={styles["img-container"]}>
-          <img
-            className={styles.img}
-            src={`${baseUrl}${currentPet.picture}`}
-            alt="pet"
-          />
+          <img className={styles.img} src={currentPet.picture} alt="pet" />
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { CurrentPetContext } from "../../Context";
 import { Col } from "react-bootstrap";
 import styles from "./PetCard.module.css";
 import { useHistory } from "react-router-dom";
-import { baseUrl } from "../../lib/serverFuncs";
 
 const PetCard = (props) => {
   const history = useHistory();
@@ -23,11 +22,7 @@ const PetCard = (props) => {
       onClick={() => redirectToPetPage(props.pet)}
     >
       <div className={styles["pic-container"]}>
-        <img
-          src={`${baseUrl}${props.pet.picture}`}
-          alt="pet"
-          className={styles["card-pic"]}
-        />
+        <img src={props.pet.picture} alt="pet" className={styles["card-pic"]} />
       </div>
       <h3>{props.pet.name}</h3>
       <h5>

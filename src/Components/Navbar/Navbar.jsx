@@ -48,7 +48,7 @@ const CustomNavbar = () => {
     await Cookie.remove("jwt");
     await setCurrentUser("");
     await setCurrentPet("");
-    history.push("/");
+    window.location.reload();
   };
   return (
     <Navbar className={styles["navbar"]}>

@@ -70,7 +70,7 @@ const AddPet = () => {
   const [petAvailable, setPetAvailable] = useState(
     currentPet.ownerId ? false : true
   );
-
+  const [btnDisabled, setBtnDisabled] = useState(true);
   const resetForm = () => {
     history.push({
       search: "",
@@ -78,6 +78,8 @@ const AddPet = () => {
     window.location.reload();
   };
   const handleInput = (e, stateChange) => {
+    setAlert(false);
+    setBtnDisabled(false);
     if (!e.target) {
       setAdoptionStatus(e);
       if (e !== "Available") {
@@ -118,6 +120,7 @@ const AddPet = () => {
     let formData = new FormData();
     formInfo.height = parseInt(formInfo.height);
     formInfo.weight = parseInt(formInfo.weight);
+    if (!formInfo.ownerId) delete formInfo.ownerId;
     formData.append("data", JSON.stringify(formInfo));
     if (picture) formData.append("picture", picture);
     if (!query.get("pet")) {
@@ -125,12 +128,16 @@ const AddPet = () => {
       if (response === "Pet successfully added") {
         setAlertType("success");
         setAlert(response);
+        setBtnDisabled(true);
         setTimeout(() => {
           setAlert(false);
         }, 10000);
       } else {
         setAlertType("danger");
         setAlert(response);
+        setTimeout(() => {
+          setAlert(false);
+        }, 10000);
       }
     } else {
       const response = await updatePet(formData, currentPet._id);
@@ -288,7 +295,7 @@ const AddPet = () => {
                 {alert}
               </Alert>
             )}
-            <Button type="Submit" className="w-100">
+            <Button type="Submit" className="w-100" disabled={btnDisabled}>
               {query.get("pet") ? "Update pet" : "Add pet"}
             </Button>
           </Form>

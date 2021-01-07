@@ -93,16 +93,14 @@ function App() {
               <PrivateRoute path="/profileSettings">
                 <ProfileSettings />
               </PrivateRoute>
-              {currentUser && (
-                <AdminRoute path="/addPet">
-                  <AddPet />
-                </AdminRoute>
-              )}
-              {currentUser && (
-                <AdminRoute path="/dashboard">
-                  <Dashboard />
-                </AdminRoute>
-              )}
+
+              <AdminRoute path="/addPet">
+                <AddPet />
+              </AdminRoute>
+
+              <AdminRoute path="/dashboard">
+                <Dashboard />
+              </AdminRoute>
             </Switch>
           </Router>
         )}

@@ -16,7 +16,9 @@ const DashboardPetListItem = (props) => {
   return (
     <ListGroup.Item action variant="secondary" onClick={redirectToPetPage}>
       <div>Pet ID: {props.pet._id}</div>
-      <div>Name: {props.pet.name}</div>
+      <span className="mr-2">Type: {props.pet.type}</span>{" "}
+      <span>Name: {props.pet.name}</span>
+      <div>Adoption Status: {props.pet.adoptionStatus}</div>
     </ListGroup.Item>
   );
 };
