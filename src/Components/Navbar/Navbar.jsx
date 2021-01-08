@@ -51,7 +51,7 @@ const CustomNavbar = () => {
     window.location.reload();
   };
   return (
-    <Navbar className={styles["navbar"]} expand="md">
+    <Navbar className={styles["navbar"]} expand="lg">
       <Navbar.Brand>
         <img src={Logo} alt="logo" />
         PetAdopt

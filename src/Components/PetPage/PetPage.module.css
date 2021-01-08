@@ -10,12 +10,12 @@
 }
 .main-body-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   height: calc(100vh - 150px);
 }
 .info-container {
+  text-align: center;
   margin: 2%;
-  width: 50%;
 }
 .facts-container {
   display: flex;
@@ -31,8 +31,8 @@ h1 {
   text-align: center;
 }
 .img-container {
+  display: block;
   background-color: rgb(46, 125, 139);
-  width: 50%;
   height: 95%;
   margin: 2%;
   border-radius: 5%;
@@ -53,4 +53,16 @@ h1 {
 }
 .heart {
   color: red;
+}
+@media only screen and (min-width: 576px) {
+  .main-body-container {
+    flex-flow: row nowrap;
+  }
+  .info-container {
+    text-align: left;
+    width: 50%;
+  }
+  .img-container {
+    width: 50%;
+  }
 }

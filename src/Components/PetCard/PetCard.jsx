@@ -17,7 +17,9 @@ const PetCard = (props) => {
   };
   return (
     <Col
-      sm={props.size}
+      md={props.size + 2}
+      lg={props.size + 1}
+      xl={props.size}
       className={styles["card-container"]}
       onClick={() => redirectToPetPage(props.pet)}
     >

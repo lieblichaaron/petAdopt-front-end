@@ -66,7 +66,7 @@ const Search = () => {
           <Row className={`justify-content-md-center ${styles["main-row"]}`}>
             {petsToSearch && petsToSearch.length > 0 && (
               <h1 className="text-center w-100">
-                Click on a pet to see more details!
+                Press on a pet to see more details!
               </h1>
             )}
             {petsToSearch && petsToSearch.length === 0 && (
@@ -81,7 +81,7 @@ const Search = () => {
             )}
             {petsToSearch &&
               petsToSearch.map((pet) => (
-                <PetCard key={pet._id} pet={pet} size={2} />
+                <PetCard key={pet._id} pet={pet} size={3} />
               ))}
           </Row>
         ) : (

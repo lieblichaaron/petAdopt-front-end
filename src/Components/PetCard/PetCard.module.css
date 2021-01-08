@@ -34,7 +34,7 @@
 .more-details {
   color: rgb(102, 40, 102);
 }
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 790px) {
   .card-container {
     margin: 0.5rem;
   }
