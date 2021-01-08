@@ -1,7 +1,15 @@
 .user-info-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
 }
 .user-pets {
-  padding-left: 3rem;
+  padding-bottom: 3rem;
+}
+@media only screen and (min-width: 576px) {
+  .user-info-container {
+    flex-flow: row nowrap;
+  }
+  .user-pets {
+    padding-left: 3rem;
+  }
 }
