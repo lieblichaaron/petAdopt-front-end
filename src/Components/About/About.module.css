@@ -54,6 +54,7 @@
   }
   .row {
     flex-flow: row nowrap;
+    justify-content: space-around;
   }
   .col {
     width: 350px;

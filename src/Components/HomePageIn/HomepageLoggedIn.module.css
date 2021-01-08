@@ -1,10 +1,10 @@
 .page-container {
-  height: 100vh;
+  height: 600px;
   padding-top: 58.92px;
 
   color: #cccccc;
 
-  background: url("../../images/picForHomepage2.jpg") no-repeat center center;
+  background: url("../../images/picForHomepage2.jpg") no-repeat 25% bottom;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -27,4 +27,13 @@
 .welcome-link:hover {
   text-decoration: none;
   color: #bbc3cc;
+}
+@media only screen and (min-width: 576px) {
+  .page-container {
+    background: url("../../images/picForHomepage2.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }
