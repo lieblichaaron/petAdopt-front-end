@@ -1,4 +1,4 @@
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
 import Logo from "../../images/favicon-32x32.png";
 import styles from "./Navbar.module.css";
@@ -51,24 +51,25 @@ const CustomNavbar = () => {
     window.location.reload();
   };
   return (
-    <Navbar className={styles["navbar"]}>
+    <Navbar className={styles["navbar"]} expand="lg">
       <Navbar.Brand>
         <img src={Logo} alt="logo" />
         PetAdopt
       </Navbar.Brand>
-      <Nav>
-        <NavLink className={styles["header-link"]} to="/petSearch">
-          Find a pet
-        </NavLink>
-        <NavLink className={styles["header-link"]} to="/myPets">
-          My pets
-        </NavLink>
-        <NavLink className={styles["header-link"]} to="/profileSettings">
-          Profile
-        </NavLink>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav>
+          <NavLink className={styles["header-link"]} to="/petSearch">
+            Find a pet
+          </NavLink>
+          <NavLink className={styles["header-link"]} to="/myPets">
+            My pets
+          </NavLink>
+          <NavLink className={styles["header-link"]} to="/profileSettings">
+            Profile
+          </NavLink>
 
-        {currentUser && currentUser.adminStatus && (
-          <div>
+          {currentUser && currentUser.adminStatus && (
             <NavLink
               className={styles["header-link"]}
               to="/addPet"
@@ -76,27 +77,29 @@ const CustomNavbar = () => {
             >
               Add pet
             </NavLink>
+          )}
+          {currentUser && currentUser.adminStatus && (
             <NavLink className={styles["header-link"]} to="/dashboard">
               Dashboard
             </NavLink>
-          </div>
-        )}
-        {!currentUser && (
-          <NavLink className={styles["header-link"]} to="/">
-            Home
+          )}
+          {!currentUser && (
+            <NavLink className={styles["header-link"]} to="/">
+              Home
+            </NavLink>
+          )}
+        </Nav>
+        {currentUser && (
+          <NavLink className={styles.about} to="/home">
+            About us
           </NavLink>
         )}
         {currentUser && (
-          <div>
-            <NavLink className={styles["about"]} to="/home">
-              About us
-            </NavLink>
-            <div className={styles.logout} onClick={confirmLogOut}>
-              Log out
-            </div>
+          <div className={styles.logout} onClick={confirmLogOut}>
+            Log out
           </div>
         )}
-      </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 };

@@ -2,19 +2,10 @@
   padding-top: 58.92px;
 }
 .homepage-container {
-  display: flex;
-  flex-direction: row;
   height: 600px;
 }
 .welcome-container {
-  height: 100%;
-  background: url("../../images/picForHomepage.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  color: #ffffff;
-  width: 50%;
+  /* display: none; */
 }
 .signup-container {
   width: 50%;
@@ -34,4 +25,43 @@
   display: block;
   margin: 2px;
   width: 100%;
+}
+@media only screen and (min-width: 576px) {
+  .main-container {
+    padding-top: 58.92px;
+  }
+  .homepage-container {
+    display: flex;
+    flex-direction: row;
+    height: 600px;
+  }
+  .welcome-container {
+    height: 100%;
+    background: url("../../images/picForHomepage.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+    width: 50%;
+  }
+  .signup-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  .inner-signup-container {
+    margin: 20%;
+  }
+  .signup-btn {
+    display: block;
+    margin: 2px;
+    width: 100%;
+  }
+  .login-btn {
+    display: block;
+    margin: 2px;
+    width: 100%;
+  }
 }

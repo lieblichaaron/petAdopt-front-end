@@ -13,9 +13,8 @@
 }
 .logout {
   color: #cccccc;
-  position: absolute;
-  right: 2rem;
   cursor: pointer;
+  padding-left: 1rem;
 }
 .logout:hover {
   text-decoration: none;
@@ -23,11 +22,20 @@
   cursor: pointer;
 }
 .about {
+  padding-left: 1rem;
   color: #cccccc;
-  position: absolute;
-  right: 8rem;
 }
 .about:hover {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.5);
+}
+@media only screen and (min-width: 992px) {
+  .logout {
+    position: absolute;
+    right: 2rem;
+  }
+  .about {
+    position: absolute;
+    right: 8rem;
+  }
 }
