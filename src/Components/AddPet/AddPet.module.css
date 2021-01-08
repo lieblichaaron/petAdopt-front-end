@@ -3,7 +3,7 @@
   padding-top: 58.92px;
 }
 .card {
-  padding: 2% 20%;
+  padding: 2% 2%;
   margin-bottom: 2%;
   overflow: auto;
   border: none;
@@ -12,4 +12,9 @@
 }
 .card::-webkit-scrollbar {
   display: none;
+}
+@media only screen and (min-width: 576px) {
+  .card {
+    padding: 2% 20%;
+  }
 }
