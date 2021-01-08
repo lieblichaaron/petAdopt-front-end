@@ -11,7 +11,7 @@ const Search = () => {
   const history = useHistory();
   const [advancedSearch, setAdvancedSearch] = useState(false);
   const [petsToSearch, setPetsToSearch] = useState(null);
-  const [filterOption, setFilterOption] = useState("More Filters+");
+  const [filterOption, setFilterOption] = useState("Filters+");
   const setSearchPets = async (queryParamsObj) => {
     let queryString = "?";
     for (const [key, value] of Object.entries(queryParamsObj)) {
@@ -24,11 +24,11 @@ const Search = () => {
     setPetsToSearch(pets);
   };
   const switchSearchBar = () => {
-    if (filterOption === "More Filters+") {
-      setFilterOption("Less Filters-");
+    if (filterOption === "Filters+") {
+      setFilterOption("Filters-");
       setAdvancedSearch(true);
     } else {
-      setFilterOption("More Filters+");
+      setFilterOption("Filters+");
       setAdvancedSearch(false);
     }
     history.push({

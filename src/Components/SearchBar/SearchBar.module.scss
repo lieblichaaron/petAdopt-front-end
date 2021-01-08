@@ -1,9 +1,9 @@
 .form {
   display: flex;
-  flex-flow: row;
+  flex-flow: row nowrap;
 }
 .search {
-  margin: 0 1rem;
+  margin: 0 0.3rem;
   height: 2.7rem;
   background-color: rgb(150, 209, 219);
   border: none;
@@ -21,8 +21,15 @@
     columns: white;
   }
 }
+.dropdown-menus {
+  display: flex;
+  flex-flow: column nowrap;
+  z-index: 100;
+}
 .name-input {
   border-radius: 2px;
+  width: 222px;
+  min-height: 44px;
   border: none;
   color: #7da0aa;
   font-weight: 300;
@@ -47,5 +54,14 @@
     /* Microsoft Edge */
     color: #7da0aa;
     font-weight: 300;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .search {
+    margin: 0 1rem;
+  }
+  .dropdown-menus {
+    display: contents;
   }
 }

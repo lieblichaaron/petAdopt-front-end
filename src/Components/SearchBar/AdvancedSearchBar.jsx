@@ -50,33 +50,35 @@ class AdvancedSearchBar extends react.Component {
   render() {
     return (
       <form className={styles.form} onSubmit={(e) => this.search(e)}>
-        <Dropdown
-          title="Species"
-          list={this.state.type}
-          resetThenSet={this.resetThenSet}
-        />
-        <Dropdown
-          title="Adoption status"
-          list={this.state.adoptionStatus}
-          resetThenSet={this.resetThenSet}
-        />
-        <Dropdown
-          title="Height(cm)"
-          list={this.state.height}
-          resetThenSet={this.resetThenSet}
-        />
-        <Dropdown
-          title="Weight(kg)"
-          list={this.state.weight}
-          resetThenSet={this.resetThenSet}
-        />
-        <input
-          type="text"
-          className={styles["name-input"]}
-          placeholder="Name"
-          value={this.state.name}
-          onChange={this.handleNameChange}
-        />
+        <div className={styles["dropdown-menus"]}>
+          <Dropdown
+            title="Species"
+            list={this.state.type}
+            resetThenSet={this.resetThenSet}
+          />
+          <Dropdown
+            title="Adoption status"
+            list={this.state.adoptionStatus}
+            resetThenSet={this.resetThenSet}
+          />
+          <Dropdown
+            title="Height(cm)"
+            list={this.state.height}
+            resetThenSet={this.resetThenSet}
+          />
+          <Dropdown
+            title="Weight(kg)"
+            list={this.state.weight}
+            resetThenSet={this.resetThenSet}
+          />
+          <input
+            type="text"
+            className={styles["name-input"]}
+            placeholder="Name"
+            value={this.state.name}
+            onChange={this.handleNameChange}
+          />
+        </div>
         <button disabled={this.state.buttonDisabled} className={styles.search}>
           Search
         </button>
