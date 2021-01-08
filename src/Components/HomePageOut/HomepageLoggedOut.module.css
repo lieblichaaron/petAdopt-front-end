@@ -48,13 +48,6 @@
   }
   .welcome-container {
     text-align: left;
-    height: 100%;
-    background: url("../../images/picForHomepage.jpg") no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    color: #ffffff;
     width: 50%;
   }
   .signup-container {
@@ -65,22 +58,11 @@
     display: flex;
     flex-flow: column nowrap;
   }
-  .inner-signup-container {
-    margin: 20%;
-  }
   .inner-signup-container-headings {
     display: block;
-  }
-  .signup-btn {
-    display: block;
-    margin: 2px;
-    width: 100%;
   }
   .login-btn {
     background-color: transparent;
     color: #17a2b8;
-    display: block;
-    margin: 2px;
-    width: 100%;
   }
 }

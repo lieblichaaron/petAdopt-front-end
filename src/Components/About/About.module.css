@@ -13,19 +13,20 @@
   color: white;
 }
 .search-link {
-  color: rgb(46, 125, 139);
-}
-.search-link:hover {
-  text-decoration: none;
-  color: #bbc3cc;
+  background-color: rgb(46, 125, 139);
+  padding: 2px;
+  box-shadow: 2px 4px 4px #888888;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
 }
 .row {
   height: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-flow: column nowrap;
 }
 .col {
-  width: 350px;
+  margin: 5px;
+  width: 100%;
   color: rgb(46, 125, 139);
   background-color: white;
   border-radius: 10px;
@@ -45,4 +46,16 @@
 .footer {
   padding: 5px;
   height: 1rem;
+}
+@media only screen and (min-width: 576px) {
+  .search-link:hover {
+    text-decoration: none;
+    color: rgb(32, 81, 90);
+  }
+  .row {
+    flex-flow: row nowrap;
+  }
+  .col {
+    width: 350px;
+  }
 }
