@@ -1,20 +1,29 @@
 .main-container {
-  padding-top: 58.92px;
+  padding-top: 51px;
 }
 .homepage-container {
-  height: 600px;
+  height: 500px;
 }
 .welcome-container {
-  /* display: none; */
+  text-align: center;
+  height: 100%;
+  background: url("../../images/picForHomepage.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #ffffff;
 }
 .signup-container {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
+  width: 100%;
+  position: absolute;
+  top: 200px;
 }
 .inner-signup-container {
   margin: 20%;
+}
+.inner-signup-container-headings {
+  display: none;
 }
 .signup-btn {
   display: block;
@@ -22,6 +31,8 @@
   width: 100%;
 }
 .login-btn {
+  background-color: #17a2b8;
+  color: #fff;
   display: block;
   margin: 2px;
   width: 100%;
@@ -36,6 +47,7 @@
     height: 600px;
   }
   .welcome-container {
+    text-align: left;
     height: 100%;
     background: url("../../images/picForHomepage.jpg") no-repeat center center;
     -webkit-background-size: cover;
@@ -46,7 +58,9 @@
     width: 50%;
   }
   .signup-container {
+    position: relative;
     width: 50%;
+    top: 0;
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
@@ -54,12 +68,17 @@
   .inner-signup-container {
     margin: 20%;
   }
+  .inner-signup-container-headings {
+    display: block;
+  }
   .signup-btn {
     display: block;
     margin: 2px;
     width: 100%;
   }
   .login-btn {
+    background-color: transparent;
+    color: #17a2b8;
     display: block;
     margin: 2px;
     width: 100%;

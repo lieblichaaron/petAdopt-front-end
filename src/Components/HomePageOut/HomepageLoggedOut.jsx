@@ -31,8 +31,10 @@ const HomepageLoggedOut = () => {
         </div>
         <div className={styles["signup-container"]}>
           <div className={styles["inner-signup-container"]}>
-            <img src={Logo} alt="logo" />
-            <h1 className="mb-3 mt-3">Adopt a pet today!</h1>
+            <div className={styles["inner-signup-container-headings"]}>
+              <img src={Logo} alt="logo" />
+              <h1 className="mb-3 mt-3">Adopt a pet today!</h1>
+            </div>
             <Button
               variant="info"
               className={styles["signup-btn"]}
