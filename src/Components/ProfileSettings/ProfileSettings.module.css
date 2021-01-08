@@ -5,12 +5,7 @@
   padding-top: 58.92px;
 }
 .main-body-pic {
-  background-color: rgb(46, 125, 139);
-  width: 50%;
-  margin: 2%;
-  border-radius: 5%;
-  overflow: hidden;
-  position: relative;
+  display: none;
 }
 .img {
   max-width: 100%;
@@ -25,7 +20,6 @@
   margin: auto;
 }
 .card {
-  width: 50%;
   padding: 2%;
   margin-bottom: 2%;
   overflow: auto;
@@ -35,4 +29,18 @@
 }
 .card::-webkit-scrollbar {
   display: none;
+}
+@media only screen and (min-width: 576px) {
+  .main-body-pic {
+    display: block;
+    background-color: rgb(46, 125, 139);
+    width: 50%;
+    margin: 2%;
+    border-radius: 5%;
+    overflow: hidden;
+    position: relative;
+  }
+  .card {
+    width: 50%;
+  }
 }
