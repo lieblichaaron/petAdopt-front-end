@@ -1,10 +1,10 @@
 .page-container {
-  background: url("../../images/PicForMyPets.jpg") no-repeat center center;
+  background: url("../../images/PicForMyPets.jpg") no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100vh;
+  height: calc(100vh);
   padding-top: 58.92px;
 }
 .main-container {
@@ -14,11 +14,14 @@
   -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
 }
+.header-col {
+  height: fit-content;
+}
 .main-row {
-  height: 100%;
-  width: 65%;
+  margin: 0;
+  max-height: 100%;
   text-align: center;
-  padding: 0 1rem;
+  padding: 0 1rem 5rem;
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -39,6 +42,7 @@
 }
 
 .footer {
+  font-size: 10px;
   position: fixed;
   bottom: 0;
 }
@@ -46,5 +50,17 @@
   color: #cccccc;
   &:hover {
     text-decoration: none;
+  }
+}
+@media only screen and (min-width: 576px) {
+  .page-container {
+    background: url("../../images/PicForMyPets.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .main-row {
+    width: 65%;
   }
 }

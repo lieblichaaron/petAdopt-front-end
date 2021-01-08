@@ -29,7 +29,7 @@ const MyPets = () => {
       {currentUsersPets && (
         <Container className={styles["main-container"]}>
           <Row className={styles["main-row"]}>
-            <Col sm={12}>
+            <Col sm={12} className={styles["header-col"]}>
               {petsToDisplay === currentUsersPets && (
                 <div>
                   <h2 className={styles.header}>
