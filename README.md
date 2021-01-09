@@ -10,5 +10,3 @@ I made this web app as part of a coding bootcamp. This is the front end of a com
 - React
 
 ### Deployment
-
-https://lieblich-petadopt.netlify.app
