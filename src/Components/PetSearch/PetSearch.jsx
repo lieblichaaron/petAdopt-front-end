@@ -76,7 +76,7 @@ const Search = () => {
             )}
             {!petsToSearch && (
               <h1 className="text-center w-100">
-                Please add specification to search!
+                Add specification to search!
               </h1>
             )}
             {petsToSearch &&

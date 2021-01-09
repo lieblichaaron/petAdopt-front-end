@@ -62,12 +62,16 @@ const CustomNavbar = () => {
           <NavLink className={styles["header-link"]} to="/petSearch">
             Find a pet
           </NavLink>
-          <NavLink className={styles["header-link"]} to="/myPets">
-            My pets
-          </NavLink>
-          <NavLink className={styles["header-link"]} to="/profileSettings">
-            Profile
-          </NavLink>
+          {currentUser && (
+            <NavLink className={styles["header-link"]} to="/myPets">
+              My pets
+            </NavLink>
+          )}
+          {currentUser && (
+            <NavLink className={styles["header-link"]} to="/profileSettings">
+              Profile
+            </NavLink>
+          )}
 
           {currentUser && currentUser.adminStatus && (
             <NavLink

@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { CurrentPetContext, UserContext } from "../../Context";
 import { useState, useContext } from "react";
 import { signup } from "../../lib/serverFuncs";
+import styles from "./Modals.module.css";
+
 const SignupModal = (props) => {
   const { currentPet } = useContext(CurrentPetContext);
   const { setCurrentUser } = useContext(UserContext);
@@ -65,6 +67,7 @@ const SignupModal = (props) => {
   }
   return (
     <Modal
+      className={styles.modal}
       animation={false}
       show={props.modalState}
       onHide={() => props.closeModal(false)}

@@ -10,18 +10,18 @@
 }
 .main-body-container {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column-reverse nowrap;
   height: calc(100vh - 150px);
 }
 .info-container {
   text-align: center;
   margin: 2%;
 }
-.facts-container {
+/* .facts-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
-}
+} */
 h3,
 h1 {
   color: rgb(46, 125, 139);
@@ -64,5 +64,10 @@ h1 {
   }
   .img-container {
     width: 50%;
+  }
+  .facts-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
   }
 }

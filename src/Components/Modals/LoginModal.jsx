@@ -4,6 +4,7 @@ import { CurrentPetContext, UserContext } from "../../Context";
 import Logo from "../../images/favicon-32x32.png";
 import { useHistory } from "react-router-dom";
 import { login } from "../../lib/serverFuncs";
+import styles from "./Modals.module.css";
 
 const LoginModal = (props) => {
   const { currentPet } = useContext(CurrentPetContext);
@@ -55,6 +56,7 @@ const LoginModal = (props) => {
   }
   return (
     <Modal
+      className={styles.modal}
       animation={false}
       show={props.modalState}
       onHide={() => props.closeModal(false)}

@@ -85,11 +85,9 @@ const PetPage = () => {
           <div className={styles["facts-container"]}>
             <div className={styles["about-container"]}>
               <h3>About me</h3>
-              <div>
-                Breed: {currentPet.type}|{currentPet.breedOfAnimal}
-              </div>
-              <div>Height: {currentPet.height}</div>
-              <div>Weight: {currentPet.weight}</div>
+              <div>Breed: {currentPet.breedOfAnimal}</div>
+              <div>Height: {currentPet.height}cm</div>
+              <div>Weight: {currentPet.weight}kg</div>
               <div>Color: {currentPet.color}</div>
               <div>Adoption status: {currentPet.adoptionStatus}</div>
             </div>
@@ -99,7 +97,7 @@ const PetPage = () => {
                 Hypoallergenic: {currentPet.hypoallergenic ? "Yes" : "No"}
               </div>
               <div>
-                Dietary Restrictions:{" "}
+                Dietary restrictions:{" "}
                 {currentPet.dietaryRestrictions
                   ? currentPet.dietaryRestrictions
                   : "None"}
@@ -107,7 +105,7 @@ const PetPage = () => {
             </div>
           </div>
           <div className={styles["bio-container"]}>
-            <h3>Bio</h3>
+            <h3>My story</h3>
             <div>{currentPet.bio}</div>
           </div>
           <div className="text-center w-100">

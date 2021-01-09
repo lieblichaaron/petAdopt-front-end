@@ -27,9 +27,7 @@ const PetCard = (props) => {
         <img src={props.pet.picture} alt="pet" className={styles["card-pic"]} />
       </div>
       <h3>{props.pet.name}</h3>
-      <h5>
-        {props.pet.type}|{props.pet.breedOfAnimal}
-      </h5>
+      <h5>{props.pet.breedOfAnimal}</h5>
       <h5>
         {props.pet.adoptionStatus
           ? props.pet.adoptionStatus
