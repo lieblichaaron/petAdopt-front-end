@@ -1,5 +1,5 @@
-const userBaseUrl = "https://secret-shelf-16643.herokuapp.com/api/users";
-const petsBaseUrl = "https://secret-shelf-16643.herokuapp.com/api/pets";
+const userBaseUrl = "https://secret-shelf-16643.herokuapp.com/users";
+const petsBaseUrl = "https://secret-shelf-16643.herokuapp.com/pets";
 
 export const signup = async (formInfo) => {
   try {
