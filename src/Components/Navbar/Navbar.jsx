@@ -1,5 +1,5 @@
-import { Navbar, Nav, Button, Form } from "react-bootstrap";
-import { NavLink, useHistory } from "react-router-dom";
+import { Navbar, Nav, Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import Logo from "../../images/favicon-32x32.png";
 import styles from "./Navbar.module.css";
 import { useContext } from "react";
@@ -9,7 +9,6 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 const CustomNavbar = () => {
-  const history = useHistory();
   const { setCurrentUser, currentUser } = useContext(UserContext);
   const { setCurrentPet } = useContext(CurrentPetContext);
   const clearCurrentPet = () => {
