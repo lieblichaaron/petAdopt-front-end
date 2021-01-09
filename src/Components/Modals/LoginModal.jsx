@@ -32,6 +32,7 @@ const LoginModal = (props) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(success);
     const currentUser = await login(formInfo);
     if (currentUser) {
       if ("_id" in currentUser) {
