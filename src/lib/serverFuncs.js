@@ -1,5 +1,5 @@
-const userBaseUrl = "http://localhost:5000/users";
-const petsBaseUrl = "http://localhost:5000/pets";
+const userBaseUrl = "https://secret-shelf-16643.herokuapp.com/api/users";
+const petsBaseUrl = "https://secret-shelf-16643.herokuapp.com/api/pets";
 
 export const signup = async (formInfo) => {
   try {

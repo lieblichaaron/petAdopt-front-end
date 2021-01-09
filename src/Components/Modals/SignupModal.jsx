@@ -5,6 +5,7 @@ import { CurrentPetContext, UserContext } from "../../Context";
 import { useState, useContext } from "react";
 import { signup } from "../../lib/serverFuncs";
 import styles from "./Modals.module.css";
+import Cookie from "js-cookie";
 
 const SignupModal = (props) => {
   const { currentPet } = useContext(CurrentPetContext);
@@ -43,9 +44,10 @@ const SignupModal = (props) => {
       displayError("Passwords do not match");
     } else {
       const currentUser = await signup(formInfo);
-      if (currentUser) {
-        if ("_id" in currentUser) {
-          await setCurrentUser(currentUser);
+      if ("user" in currentUser) {
+        if ("_id" in currentUser.user) {
+          Cookie.set("jwt", currentUser.token);
+          await setCurrentUser(currentUser.user);
           setUserLoggedIn(true);
         } else if ("error" in currentUser) {
           displayError(currentUser.error);

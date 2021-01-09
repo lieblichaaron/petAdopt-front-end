@@ -42,8 +42,10 @@ function App() {
     const getUserfromToken = async () => {
       if (!currentUser && cookie) {
         const userFromToken = await loginWithToken();
-        if (userFromToken) {
-          setCurrentUser(userFromToken);
+        console.log(userFromToken);
+        if ("user" in userFromToken) {
+          Cookie.set("jwt", userFromToken.newToken);
+          setCurrentUser(userFromToken.user);
           if (!currentPet && query.get("pet")) {
             getPetById(query.get("pet")).then((pet) => {
               setCurrentPet(pet);

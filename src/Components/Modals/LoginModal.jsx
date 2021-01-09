@@ -5,6 +5,7 @@ import Logo from "../../images/favicon-32x32.png";
 import { useHistory } from "react-router-dom";
 import { login } from "../../lib/serverFuncs";
 import styles from "./Modals.module.css";
+import Cookie from "js-cookie";
 
 const LoginModal = (props) => {
   const { currentPet } = useContext(CurrentPetContext);
@@ -33,9 +34,10 @@ const LoginModal = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const currentUser = await login(formInfo);
-    if (currentUser) {
-      if ("_id" in currentUser) {
-        await setCurrentUser(currentUser);
+    if ("user" in currentUser) {
+      if ("_id" in currentUser.user) {
+        Cookie.set("jwt", currentUser.token);
+        await setCurrentUser(currentUser.user);
         setUserLoggedIn(true);
       } else if ("error" in currentUser) {
         displayError(currentUser.error);
