@@ -4,6 +4,8 @@ import styles from "./MyPets.module.scss";
 import PetCard from "../PetCard/PetCard";
 import { Container, Row, Col } from "react-bootstrap";
 import { getUsersPets, getUsersSavedPets } from "../../lib/serverFuncs";
+import Cookie from "js-cookie";
+const cookie = Cookie.getJSON("jwt");
 
 const MyPets = () => {
   const [petsToDisplay, setPetsToDisplay] = useState(null);
@@ -15,8 +17,8 @@ const MyPets = () => {
   };
   useEffect(() => {
     const getCurrentUsersPets = async () => {
-      const pets = await getUsersPets("token");
-      const savedPets = await getUsersSavedPets("token");
+      const pets = await getUsersPets("token" + cookie);
+      const savedPets = await getUsersSavedPets("token" + cookie);
       setPetsToDisplay(pets);
       setCurrentUsersSavedPets(savedPets);
       setCurrentUsersPets(pets);

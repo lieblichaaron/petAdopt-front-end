@@ -4,6 +4,8 @@ import { getUsersPets, updateUser } from "../../lib/serverFuncs";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../Context";
 import defaultPic from "../../images/picForHomepage.jpg";
+import Cookie from "js-cookie";
+const cookie = Cookie.getJSON("jwt");
 
 const ProfileSettings = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -54,7 +56,7 @@ const ProfileSettings = () => {
     if (!formInfo.password) {
       delete formInfo.password;
     }
-    const newUserInfo = await updateUser(formInfo, currentUser._id);
+    const newUserInfo = await updateUser(formInfo, currentUser._id, cookie);
     setCurrentUser(newUserInfo);
     setAlertType("success");
     displayMsg("Update successful");

@@ -5,7 +5,6 @@ export const signup = async (formInfo) => {
   try {
     const response = await fetch(`${userBaseUrl}/signup`, {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -22,7 +21,6 @@ export const login = async (formInfo) => {
   try {
     const response = await fetch(`${userBaseUrl}/login`, {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -35,10 +33,14 @@ export const login = async (formInfo) => {
   }
 };
 
-export const loginWithToken = async () => {
+export const loginWithToken = async (token) => {
   try {
     const response = await fetch(`${userBaseUrl}/login/token`, {
-      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token }),
     });
     const data = await response.json();
     return data;
@@ -51,7 +53,6 @@ export const addPet = async (formData) => {
   try {
     const response = await fetch(`${petsBaseUrl}/`, {
       method: "POST",
-      credentials: "include",
       body: formData,
     });
     const data = await response.json();
@@ -60,12 +61,10 @@ export const addPet = async (formData) => {
     return e;
   }
 };
-// if you would like to use the userId contained in the cookie pass "token" to getUsersPets function
+
 export const getUsersPets = async (userId) => {
   try {
-    const response = await fetch(`${userBaseUrl}/${userId}/pets`, {
-      credentials: "include",
-    });
+    const response = await fetch(`${userBaseUrl}/${userId}/pets`);
     const data = await response.json();
     return data;
   } catch {
@@ -76,9 +75,7 @@ export const getUsersPets = async (userId) => {
 
 export const getUsersSavedPets = async (userId) => {
   try {
-    const response = await fetch(`${userBaseUrl}/${userId}/saved`, {
-      credentials: "include",
-    });
+    const response = await fetch(`${userBaseUrl}/${userId}/saved`);
     const data = await response.json();
     return data;
   } catch {
@@ -87,11 +84,14 @@ export const getUsersSavedPets = async (userId) => {
   }
 };
 
-export const changeSavedPets = async (petId) => {
+export const changeSavedPets = async (petId, token) => {
   try {
     const response = await fetch(`${petsBaseUrl}/${petId}/save`, {
       method: "PUT",
-      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token }),
     });
     const data = await response.json();
     return data;
@@ -103,9 +103,7 @@ export const changeSavedPets = async (petId) => {
 
 export const getPetById = async (petId) => {
   try {
-    const response = await fetch(`${petsBaseUrl}/${petId}`, {
-      credentials: "include",
-    });
+    const response = await fetch(`${petsBaseUrl}/${petId}`);
     const data = await response.json();
     return data;
   } catch {
@@ -114,28 +112,31 @@ export const getPetById = async (petId) => {
   }
 };
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (token) => {
   try {
     const response = await fetch(`${userBaseUrl}/`, {
-      credentials: "include",
-    });
-    const data = await response.json();
-    return data;
-  } catch {
-    console.log("failed");
-    return false;
-  }
-};
-
-export const changeAdoptionStatus = async (petId, status) => {
-  try {
-    const response = await fetch(`${petsBaseUrl}/${petId}/adopt`, {
-      method: "PUT",
-      credentials: "include",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ adoptionStatus: status }),
+      body: JSON.stringify({ token }),
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    console.log("failed");
+    return false;
+  }
+};
+
+export const changeAdoptionStatus = async (petId, adoptionStatus, token) => {
+  try {
+    const response = await fetch(`${petsBaseUrl}/${petId}/adopt`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ adoptionStatus, token }),
     });
     const data = await response.json();
     return data;
@@ -149,7 +150,6 @@ export const updatePet = async (formData, petId) => {
   try {
     const response = await fetch(`${petsBaseUrl}/${petId}`, {
       method: "PUT",
-      credentials: "include",
       body: formData,
     });
     const data = await response.json();
@@ -174,15 +174,14 @@ export const getPetsByParams = async (paramsObj) => {
   }
 };
 
-export const updateUser = async (userInfo, userId) => {
+export const updateUser = async (userInfo, userId, token) => {
   try {
     const response = await fetch(`${userBaseUrl}/${userId}`, {
       method: "PUT",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify({ userInfo, token }),
     });
     const data = await response.json();
     return data;

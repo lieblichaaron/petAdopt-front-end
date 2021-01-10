@@ -41,10 +41,9 @@ function App() {
   useEffect(() => {
     const getUserfromToken = async () => {
       if (!currentUser && cookie) {
-        const userFromToken = await loginWithToken();
-        console.log(userFromToken);
-        if ("user" in userFromToken) {
-          Cookie.set("jwt", userFromToken.newToken);
+        const userFromToken = await loginWithToken(cookie);
+        if (typeof userFromToken === "object" && "user" in userFromToken) {
+          Cookie.set("jwt", userFromToken.newToken, { expires: 3 });
           setCurrentUser(userFromToken.user);
           if (!currentPet && query.get("pet")) {
             getPetById(query.get("pet")).then((pet) => {

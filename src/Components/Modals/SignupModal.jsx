@@ -44,9 +44,9 @@ const SignupModal = (props) => {
       displayError("Passwords do not match");
     } else {
       const currentUser = await signup(formInfo);
-      if ("user" in currentUser) {
+      if (typeof currentUser === "object" && "user" in currentUser) {
         if ("_id" in currentUser.user) {
-          Cookie.set("jwt", currentUser.token);
+          Cookie.set("jwt", currentUser.token, { expires: 3 });
           await setCurrentUser(currentUser.user);
           setUserLoggedIn(true);
         } else if ("error" in currentUser) {

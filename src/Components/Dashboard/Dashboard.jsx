@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { ListGroup, Tab, Row, Col } from "react-bootstrap";
 import DashboardUserListItem from "./DashboardUserListItem";
 import DashboardUserInfo from "./DashboardUserInfo";
+import Cookie from "js-cookie";
+const cookie = Cookie.getJSON("jwt");
 const Dashboard = () => {
   const [usersList, setUsersList] = useState("");
   const [tempUsersList, setTempUsersList] = useState("");
   const getUsers = async () => {
-    const users = await getAllUsers();
+    const users = await getAllUsers(cookie);
     setUsersList(users);
     setTempUsersList(users);
   };

@@ -11,6 +11,8 @@ import {
 import styles from "./AddPet.module.css";
 import { useHistory } from "react-router-dom";
 import { addPet, updatePet } from "../../lib/serverFuncs";
+import Cookie from "js-cookie";
+const cookie = Cookie.getJSON("jwt");
 
 const AddPet = () => {
   const search = window.location.search;
@@ -121,7 +123,7 @@ const AddPet = () => {
     formInfo.height = parseInt(formInfo.height);
     formInfo.weight = parseInt(formInfo.weight);
     if (!formInfo.ownerId) delete formInfo.ownerId;
-    formData.append("data", JSON.stringify(formInfo));
+    formData.append("data", JSON.stringify({ formInfo, cookie }));
     if (picture) formData.append("picture", picture);
     if (!query.get("pet")) {
       const response = await addPet(formData);

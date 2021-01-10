@@ -9,6 +9,9 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useHistory } from "react-router-dom";
 import { changeSavedPets, changeAdoptionStatus } from "../../lib/serverFuncs";
+import Cookie from "js-cookie";
+const cookie = Cookie.getJSON("jwt");
+
 const PetPage = () => {
   const history = useHistory();
   const { setCurrentPet, currentPet } = useContext(CurrentPetContext);
@@ -60,7 +63,11 @@ const PetPage = () => {
     });
   };
   const changePetStatus = async (status) => {
-    const newPetInfo = await changeAdoptionStatus(currentPet._id, status);
+    const newPetInfo = await changeAdoptionStatus(
+      currentPet._id,
+      status,
+      cookie
+    );
     setCurrentPet(newPetInfo);
   };
   const savePet = async () => {
@@ -70,7 +77,7 @@ const PetPage = () => {
       });
       return;
     }
-    await changeSavedPets(currentPet._id);
+    await changeSavedPets(currentPet._id, cookie);
     if (heart === clearHeart) {
       setHeart(coloredHeart);
     } else {
