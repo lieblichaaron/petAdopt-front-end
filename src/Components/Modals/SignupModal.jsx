@@ -66,6 +66,7 @@ const SignupModal = (props) => {
     } else {
       history.push("/home");
     }
+    window.location.reload();
   }
   return (
     <Modal

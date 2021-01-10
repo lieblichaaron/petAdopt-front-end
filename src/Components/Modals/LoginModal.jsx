@@ -55,6 +55,7 @@ const LoginModal = (props) => {
     } else {
       history.push("/home");
     }
+    window.location.reload();
   }
   return (
     <Modal
