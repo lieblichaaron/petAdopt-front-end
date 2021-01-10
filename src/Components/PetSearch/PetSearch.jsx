@@ -11,7 +11,8 @@ const Search = () => {
   const history = useHistory();
   const [advancedSearch, setAdvancedSearch] = useState(false);
   const [petsToSearch, setPetsToSearch] = useState(null);
-  const [filterOption, setFilterOption] = useState("Filters+");
+  const [filterOptionSm, setFilterOptionSm] = useState("+");
+  const [filterOptionLg, setFilterOptionLg] = useState("Filters+");
   const setSearchPets = async (queryParamsObj) => {
     let queryString = "?";
     for (const [key, value] of Object.entries(queryParamsObj)) {
@@ -24,11 +25,13 @@ const Search = () => {
     setPetsToSearch(pets);
   };
   const switchSearchBar = () => {
-    if (filterOption === "Filters+") {
-      setFilterOption("Filters-");
+    if (filterOptionSm === "+") {
+      setFilterOptionLg("Filters-");
+      setFilterOptionSm("-");
       setAdvancedSearch(true);
     } else {
-      setFilterOption("Filters+");
+      setFilterOptionSm("+");
+      setFilterOptionLg("Filters+");
       setAdvancedSearch(false);
     }
     history.push({
@@ -58,7 +61,8 @@ const Search = () => {
           <BasicSearchBar sendQueryParams={setSearchPets} />
         )}
         <button className={styles["filter-select"]} onClick={switchSearchBar}>
-          {filterOption}
+          <span className={styles["filter-sm"]}>{filterOptionSm}</span>
+          <span className={styles["filter-lg"]}>{filterOptionLg}</span>
         </button>
       </div>
       <Container className={`fluid ${styles["main-container"]}`}>

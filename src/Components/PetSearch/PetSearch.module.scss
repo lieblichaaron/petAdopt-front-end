@@ -33,6 +33,12 @@
     columns: white;
   }
 }
+.filter-sm {
+  display: inline;
+}
+.filter-lg {
+  display: none;
+}
 .main-container {
   height: calc(100% - 80px);
   max-width: 100%;
@@ -72,5 +78,11 @@
   }
   .filter-select {
     width: 113px;
+  }
+  .filter-sm {
+    display: none;
+  }
+  .filter-lg {
+    display: inline;
   }
 }
